@@ -11,6 +11,11 @@ a {
   color: #00B7FF;
 }
 
+img {
+  height: auto;
+  max-width: 100%;
+}
+
 footer {
   bottom: 0;
   width: 100%;

@@ -54,4 +54,12 @@ router.get('/get_all_plants', function(req,res,next) {
   })
 });
 
+/* GET nickname page. */
+router.get('/login', function(req, res, next) {
+  res.render('nickname', { title: 'Sign In' });
+});
+/* GET plant page. */
+router.get('/plant', function(req, res, next) {
+  res.render('plant', { title: 'Poison Ivy - Plant' });
+});
 module.exports = router;
