@@ -45,12 +45,12 @@ router.post('/add_post', upload.single('img'), function(req, res, next) {
   res.redirect('/');
 });
 
-router.get('/get_all_plants', function(req,res,next) {
+router.get('/all_plants', function(req,res,next) {
   let result = plants.getAll()
   result.then(plants => {
-    let data = JSON.parse(plants);
-    console.log(data.length)
-    res.render('get_all_plants', {title: 'View Plants', data: data});
+    let plant_data = JSON.parse(plants);
+    console.log(plant_data.length)
+    res.render('all_plants', {title: 'View Plants', data: plant_data});
   })
 });
 
