@@ -31,3 +31,14 @@ exports.getAll = function() {
         return null;
     });
 };
+
+// Function to retrieve a single plant by its ID
+exports.getById = function(plantId) {
+    return plantModel.findById(plantId).then(plant => {
+        return JSON.stringify(plant);
+    }).catch(err => {
+        console.log(err);
+        // Return null if error occurs
+        return null;
+    });
+};
