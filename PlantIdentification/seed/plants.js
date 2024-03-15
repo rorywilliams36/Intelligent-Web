@@ -12,7 +12,9 @@ const seedData = [
         Sun_Exposure: 'Partial Shade',
         Fruit_Seeds: 'None',
         Size: 10,
-        Status: false
+        Status: false,
+        UserName: "Rory123",
+        Description: "Gave me a rash"
     },
     {
         PlantName: 'Rose',
@@ -23,7 +25,9 @@ const seedData = [
         Flower_Colour: 'Red',
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
-        Status: true
+        Status: true,
+        UserName: "Ben123",
+        Description: "Red and thorny"
     },
     {
         PlantName: 'Bluetips',
@@ -35,7 +39,9 @@ const seedData = [
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'None',
         Size: 5,
-        Status: false
+        Status: false,
+        UserName: "Ben123",
+        Description: "Has bright blue"
     },
     {
         PlantName: 'Yew',
@@ -46,11 +52,13 @@ const seedData = [
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
         Size: 25,
-        Status: false
+        Status: false,
+        UserName: "Theo999",
+        Description: "Tree with lots of seeds"
     },
     {
         PlantName: 'Sunflower',
-        Date: new Date('08-03-2024'),
+        Date_Seen: new Date('08-03-2024'),
         Location: 'Manchester',
         Leaves: true,
         Flowers: true,
@@ -58,7 +66,9 @@ const seedData = [
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
         Size: 15,
-        Status: false
+        Status: false,
+        UserName: "Ben123",
+        Description: "Tall yellow flower"
     },
     {
         PlantName: 'Cactus',
@@ -70,7 +80,9 @@ const seedData = [
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
         Size: 7,
-        Status: false
+        Status: false,
+        UserName: "Rory123",
+        Description: "Very prickly/spikey"
     }
 ];
 
