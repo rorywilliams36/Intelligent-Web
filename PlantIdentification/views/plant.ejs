@@ -13,7 +13,7 @@
         <div class="row">
             <div class="card col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto"><img class="card-img-top w-100 d-block p-3" alt="Plant" src="https://media.istockphoto.com/id/658291850/photo/young-plant-growing-in-sunlight.jpg?s=612x612&w=0&k=20&c=ZH9gmP8dLhwNaWuVbtBz99Fkybg_B0Uanw88QXSdMnY=">
                 <div class="card-body text-center">
-                    <h4 class="text-bg-primary py-2 rounded"><strong><%= data.Plant_Name %></strong></h4>
+                    <h4 class="text-bg-primary py-2 rounded"><strong><%= data.Plant_Name%></strong></h4>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6"><i class="far fa-map"></i><strong class="text-start" style="margin-left: 0.2em;"><%= new Date(data.Date_Seen).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) %></strong></div>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6"><i class="far fa-user"></i><strong class="text-start" style="margin-left: 0.2em;"><%= data.Username %></strong></div>
-                            <div class="col-md-6"><i class="far fa-chart-bar"></i><strong class="text-start" style="margin-left: 0.2em;"><%= data.Height %></strong></div>
+                            <div class="col-md-6"><i class="far fa-chart-bar"></i><strong class="text-start" style="margin-left: 0.2em;"><%= data.Height %>m</strong></div>
                         </div>
                         <div class="row">
                             <div class="col-md-6"><i class="far fa-moon"></i><strong class="text-start" style="margin-left: 0.2em;"><%= data.Flowers %></strong></div>
@@ -29,14 +29,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6"><i class="far fa-chart-bar"></i><strong class="text-start" style="margin-left: 0.2em;"><%= data.Spread %></strong></div>
-                            <div class="col-md-6"><i class="far fa-map"></i><strong class="text-start" style="margin-left: 0.2em;">Location</strong></div>
-
                             <div class="col-md-6"><i class="far fa-lemon"></i><strong class="text-start" style="margin-left: 0.2em;">Fruit?</strong></div>
-                            <div class="col-md-6"><i class="far fa-sun"></i><strong class="text-start" style="margin-left: 0.2em;">Sun Exposure?</strong></div>
+
 
                         </div>
                         <div class="row">
-                            <div class="col-md-12"><i class="far fa-image"></i><strong class="text-start" style="margin-left: 0.2em;">Flower Colour?</strong></div>
+                            <div class="col-md-6"><i class="far fa-sun"></i><strong class="text-start" style="margin-left: 0.2em;">Sun Exposure?</strong></div>
+                            <div class="col-md-6"><i class="far fa-image"></i><strong class="text-start" style="margin-left: 0.2em;">Flower Colour?</strong></div>
                         </div>
                     </div>
                     <p class="card-text" style="margin-top: 1em;"><%= data.Description %></p>
