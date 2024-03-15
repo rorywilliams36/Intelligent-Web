@@ -49,12 +49,21 @@ router.get('/all_plants', function(req,res,next) {
 router.get('/login', function(req, res, next) {
   res.render('nickname', { title: 'Sign In' });
 });
+
 /* GET plant page. */
-router.get('/plant', function(req, res, next) {
-  res.render('plant', { title: 'Poison Ivy - Plant' });
+router.get('/plant/:id', function(req, res, next) {
+  let result = plants.getById(req.params.id); // Assuming a function getById exists in your plants controller
+  console.log(req.params.id)
+  result.then(plant => {
+    res.render('plant', { title: 'Plant', data: JSON.parse(plant) });
+  }).catch(error => {
+    console.error(error);
+    res.status(500).send('Error retrieving plant');
+  });
 });
 
 router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
 })
+
 module.exports = router;
