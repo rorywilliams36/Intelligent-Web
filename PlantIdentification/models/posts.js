@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 let PostSchema = new Schema(
     {
         UserName: {type: String, required: true, max:100},
-        Plant: {type: String, require: false},
+        Plant: {type: mongoose.Schema.Types.ObjectId, ref: 'plants'},
         Date: {type: Date},
         Description: {type: String, required: false, max: 255},
         Status: {type: Boolean, required: false},

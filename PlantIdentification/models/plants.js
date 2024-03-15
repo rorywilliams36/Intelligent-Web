@@ -6,11 +6,15 @@ let Schema = mongoose.Schema;
 // Defines Schema for Plant Model
 let PlantSchema = new Schema(
     {
-        PlantName: {type: String, required: true, max:100},
-        Date: {type: Date, required: false, max: 50},
+            PlantName: {type: String, required: true, max:100},
+        Date: {type: Date, required: false},
         Location: {type: String, required: false, max: 100},
         Size: {type: Number, required: false},
-        Characteristics: {type: String, required: false},
+        Flowers: {type: Boolean, required: false, default: false},
+        Flower_Colour: {type: String, required: false},
+        Leaves: {type: Boolean, required: false, default: false},
+        Sun_Exposure: ['Full Sun', 'Partial Shade', 'Full Shade'],
+        Fruit_Seeds: ['Fruit Only, Seeds Only, Fruits and Seeds, None'],
         Status: {type: Boolean, required: true},
         ScientificName: {type: String, required: false}
     }
