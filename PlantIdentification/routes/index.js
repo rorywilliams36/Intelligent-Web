@@ -4,8 +4,6 @@ var multer = require('multer');
 
 const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
-const posts = require('../controllers/posts')
-
 
 var storage = multer.diskStorage({
   function(req, file, cb) {
@@ -34,13 +32,6 @@ router.post('/add_plant', function(req, res, next ) {
 router.post('/add_comment', function(req, res, next) {
   let data = req.body;
   let result = comments.create(data);
-  console.log(result);
-  res.redirect('/');
-});
-router.post('/add_post', upload.single('img'), function(req, res, next) {
-  let data = req.body;
-  let filepath = req.file.path;
-  let result = posts.create(data, filepath);
   console.log(result);
   res.redirect('/');
 });
