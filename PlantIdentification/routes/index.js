@@ -53,4 +53,8 @@ router.get('/login', function(req, res, next) {
 router.get('/plant', function(req, res, next) {
   res.render('plant', { title: 'Poison Ivy - Plant' });
 });
+
+router.get('/create_plant', function(req,res,next) {
+  res.render('create_plant', {title: 'Add Plant'})
+})
 module.exports = router;

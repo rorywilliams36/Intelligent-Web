@@ -6,8 +6,8 @@ const commentModel = require('../models/comments');
 // Plant created using schema
 exports.create = function(data) {
     let comment = new commentModel({
-        Username: data.username,
-        Post: data.post
+        Username: data.Username,
+        Plant: data.Plant
     });
 
     // Return plant instance

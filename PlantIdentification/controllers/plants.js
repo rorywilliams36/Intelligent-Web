@@ -5,7 +5,7 @@ const plantModel = require('../models/plants');
 // Plant created using schema
 exports.create = function(data) {
     let plant = new plantModel({
-        PlantName: data.PlantName,
+        PlantName: data.Plant_Name,
         Status: false
     });
 
