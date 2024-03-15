@@ -1,6 +1,5 @@
 // Import model
 const plantModel = require('../models/plants');
-const postModel = require("../models/posts");
 
 // Function to create new plant instances
 // Plant created using schema
