@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 let CommentSchema = new Schema(
     {
         UserName: {type: String, required: true, max:100},
-        Post: {type: mongoose.Schema.Types.ObjectId, ref: 'posts'},
+        Plant: {type: mongoose.Schema.Types.ObjectId, ref: 'plants'},
         Date: {type: Date, required: false},
         Comment: {type: String, required: false, max: 100}
     }
