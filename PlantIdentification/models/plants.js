@@ -5,8 +5,8 @@ let Schema = mongoose.Schema;
 
 // Defines Schema for Plant Model
 let PlantSchema = new Schema({
-        PlantName: {type: String, required: true, max:100},
-        UserName: {type: String, required: true},
+        Plant_Name: {type: String, required: true, max:100},
+        Username: {type: String, required: true},
         Date_Seen: {type: Date, required: false},
         Location: {type: String, required: false, max: 100},
         Description: {type: String},
