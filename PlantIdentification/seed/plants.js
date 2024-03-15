@@ -11,7 +11,8 @@ const seedData = [
         Flowers: false,
         Sun_Exposure: 'Partial Shade',
         Fruit_Seeds: 'None',
-        Size: 10,
+        Height: 10,
+        Spread: 14,
         Status: false,
         Username: "Rory123",
         Description: "Gave me a rash"
@@ -25,6 +26,8 @@ const seedData = [
         Flower_Colour: 'Red',
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
+        Height: 7.5,
+        Spread: 2,
         Status: true,
         Username: "Ben123",
         Description: "Red and thorny"
@@ -38,7 +41,8 @@ const seedData = [
         Flower_Colour: 'Light Blue',
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'None',
-        Size: 5,
+        Height: 5,
+        Spread: 5,
         Status: false,
         Username: "Ben123",
         Description: "Has bright blue"
@@ -51,7 +55,8 @@ const seedData = [
         Flowers: false,
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
-        Size: 25,
+        Height: 100,
+        Spread: 100,
         Status: false,
         Username: "Theo999",
         Description: "Tree with lots of seeds"
@@ -65,7 +70,8 @@ const seedData = [
         Flower_Colour: 'Yellow',
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
-        Size: 15,
+        Height: 15,
+        Spread: 5,
         Status: false,
         Username: "Ben123",
         Description: "Tall yellow flower"
@@ -79,7 +85,8 @@ const seedData = [
         Flower_Colour: 'Red',
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
-        Size: 7,
+        Height: 7,
+        Spread: 5,
         Status: false,
         Username: "Rory123",
         Description: "Very prickly/spikey"
