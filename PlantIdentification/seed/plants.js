@@ -4,8 +4,8 @@ const plants = require('../models/plants');
 
 const seedData = [
     {
-        PlantName: 'Poison Ivy',
-        Date: new Date('06-11-2023'),
+        Plant_Name: 'Poison Ivy',
+        Date_Seen: new Date('06-11-2023'),
         Location: 'Manchester',
         Leaves: true,
         Flowers: false,
@@ -13,12 +13,12 @@ const seedData = [
         Fruit_Seeds: 'None',
         Size: 10,
         Status: false,
-        UserName: "Rory123",
+        Username: "Rory123",
         Description: "Gave me a rash"
     },
     {
-        PlantName: 'Rose',
-        Date: new Date('12-22-2023'),
+        Plant_Name: 'Rose',
+        Date_Seen: new Date('12-22-2023'),
         Location: 'Sheffield',
         Leaves: true,
         Flowers: true,
@@ -26,12 +26,12 @@ const seedData = [
         Sun_Exposure: 'Full Sun',
         Fruit_Seeds: 'Seeds',
         Status: true,
-        UserName: "Ben123",
+        Username: "Ben123",
         Description: "Red and thorny"
     },
     {
-        PlantName: 'Bluetips',
-        Date: new Date('08-12-2023'),
+        Plant_Name: 'Bluetips',
+        Date_Seen: new Date('08-12-2023'),
         Location: 'Brighton',
         Leaves: true,
         Flowers: true,
@@ -40,12 +40,12 @@ const seedData = [
         Fruit_Seeds: 'None',
         Size: 5,
         Status: false,
-        UserName: "Ben123",
+        Username: "Ben123",
         Description: "Has bright blue"
     },
     {
-        PlantName: 'Yew',
-        Date: new Date('12-15-2023'),
+        Plant_Name: 'Yew',
+        Date_Seen: new Date('12-15-2023'),
         Location: 'London',
         Leaves: true,
         Flowers: false,
@@ -53,11 +53,11 @@ const seedData = [
         Fruit_Seeds: 'Seeds',
         Size: 25,
         Status: false,
-        UserName: "Theo999",
+        Username: "Theo999",
         Description: "Tree with lots of seeds"
     },
     {
-        PlantName: 'Sunflower',
+        Plant_Name: 'Sunflower',
         Date_Seen: new Date('08-03-2024'),
         Location: 'Manchester',
         Leaves: true,
@@ -67,12 +67,12 @@ const seedData = [
         Fruit_Seeds: 'Seeds',
         Size: 15,
         Status: false,
-        UserName: "Ben123",
+        Username: "Ben123",
         Description: "Tall yellow flower"
     },
     {
-        PlantName: 'Cactus',
-        Date: new Date('06-15-2023'),
+        Plant_Name: 'Cactus',
+        Date_Seen: new Date('06-15-2023'),
         Location: 'Nevada',
         Leaves: false,
         Flowers: true,
@@ -81,7 +81,7 @@ const seedData = [
         Fruit_Seeds: 'Seeds',
         Size: 7,
         Status: false,
-        UserName: "Rory123",
+        Username: "Rory123",
         Description: "Very prickly/spikey"
     }
 ];
