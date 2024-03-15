@@ -17,21 +17,21 @@
                 </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                <% for (let i = 0; i < 5; i++) { %>
-                <div class="col">
-                    <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                        <div class="text-center text-bg-light py-4" style="padding-top: 0px;margin-top: -1px;padding-bottom: 0px;">
-                            <h4 class="text-bg-primary" style="padding-bottom: 11px;padding-top: 10px;font-weight: bold;">Plant Name</h4>
-                            <div class="row">
-                                <div class="col"><i class="far fa-map"></i><strong class="text-start" style="margin-left: 0.2em;">Location</strong></div>
-                                <div class="col"><i class="far fa-clock"></i><strong class="text-start" style="margin-left: 0.2em;">Date</strong></div>
-                                <div class="col"><i class="far fa-user"></i><strong class="text-start" style="margin-left: 0.2em;">John Doe</strong></div>
+                <% data.forEach(plant => { %>
+                    <div class="col">
+                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                            <div class="text-center text-bg-light py-4" style="padding-top: 0px;margin-top: -1px;padding-bottom: 0px;">
+                                <h4 class="text-bg-primary" style="padding-bottom: 11px;padding-top: 10px;font-weight: bold;"><%= plant.PlantName %></h4>
+                                <div class="row">
+                                    <div class="col"><i class="far fa-map"></i><br><strong class="text-start" style="margin-left: 0.2em;"><%= plant.Location %></strong></div>
+                                    <div class="col"><i class="far fa-clock"></i><br><strong class="text-start" style="margin-left: 0.2em;"><%= new Date(plant.Date).toDateString() %></strong></div>
+                                    <div class="col"><i class="far fa-user"></i><br><strong class="text-start" style="margin-left: 0.2em;">Unknown</strong></div>
+                                </div>
+                                <p></p><a class="btn btn-primary" type="button" style="padding-right: 28px;padding-left: 30px;" href="/plant">View Post</a>
                             </div>
-                            <p></p><a class="btn btn-primary" type="button" style="padding-right: 28px;padding-left: 30px;" href="/plant">View Post</a>
                         </div>
                     </div>
-                </div>
-                <% } %>
+                <% }); %>
             </div>
         </div>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
