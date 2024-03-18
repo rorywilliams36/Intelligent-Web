@@ -16,6 +16,12 @@ img {
   max-width: 100%;
 }
 
+div.form-group{
+  display: block;
+  padding: 1.1em;
+}
+
+
 footer {
   bottom: 0;
   width: 100%;

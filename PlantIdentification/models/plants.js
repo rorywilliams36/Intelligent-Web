@@ -13,11 +13,11 @@ let PlantSchema = new Schema({
         Height: {type: Number, required: false},
         Spread: {type: Number, required: false},
         Flowers: {type: Boolean, required: false, default: false},
-        Flower_Colour: {type: String, required: false},
+        Flower_Colour: {type: String, required: false, default: null},
         Leaves: {type: Boolean, required: false, default: false},
         Sun_Exposure: ['Full Sun', 'Partial Shade', 'Full Shade'],
         Fruit_Seeds: ['Fruit Only, Seeds Only, Fruits and Seeds, None'],
-        Status: {type: Boolean, required: true}
+        Status: {type: Boolean, required: true, default: false}
     }
 );
 
