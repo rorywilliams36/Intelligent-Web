@@ -3,7 +3,8 @@ const plantModel = require('../models/plants');
 
 // Function to create new plant instances
 // Plant created using schema
-exports.create = async function(data) {
+exports.create = async function(data, filepath) {
+    data.Img = filepath;
     let plant = new plantModel(data);
     console.log(plant)
     try {
