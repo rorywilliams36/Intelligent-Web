@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
+var geolocation = require('geolocation');
 
 const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
@@ -71,7 +72,6 @@ router.post('/submit-plant', function(req, res, next) {
   plantData.Status = plantData.Status === 'on';
   plantData.Leaves = plantData.Leaves === 'on';
   plantData.Flowers = plantData.Flowers === 'on';
-
 
   console.log('Form Submitted');
   // res.('Form submitted successfully')

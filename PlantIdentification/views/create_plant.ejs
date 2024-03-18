@@ -8,7 +8,7 @@
         <%- include('./partial/header.ejs'); %>
     </header>
 
-    <body>
+    <body onload="getLocation()">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post">
             <div class="form-row">
@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="Location">Location Found</label>
-                <input type="text" class="form-control" name="Location" id="Location" placeholder="Sheffield">
+                <input type="text" class="form-control" name="Location" id="Location" placeholder="$location">
             </div>
             <div class="form-group">
                 <label for="Date_Seen">Date Seen</label>
@@ -100,6 +100,15 @@
 </html>
 
 <script>
+    function getLocation(){
+        if (navigator.geolocation) {
+            return navigator.geolocation.getCurrentPosition(pos);
+        } else {
+            window.alert('Geolocation is not supported')
+            return null;
+        }
+    }
+
     function checkFlowers() {
         let check = document.getElementById('Flowers');
         let colour = document.getElementById('colourText')
@@ -110,17 +119,4 @@
             colour.style.display = "none";
         }
     }
-
-    // // Credit: https://stackoverflow.com/questions/37073010/checkbox-value-true-false
-    // $('#checkbox-value').text($('#Check').val());
-    //
-    // $("#Check").on('change', function() {
-    //     if ($(this).is(':checked')) {
-    //         $(this).attr('value', 'true');
-    //     } else {
-    //         $(this).attr('value', 'false');
-    //     }
-    //
-    //     $('#checkbox-value').text($('#Check').val());
-    // });
 </script>
