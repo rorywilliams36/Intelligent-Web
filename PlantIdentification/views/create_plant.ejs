@@ -8,7 +8,7 @@
         <%- include('./partial/header.ejs'); %>
     </header>
 
-    <body onload="getLocation()">
+    <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post">
             <div class="form-row">
@@ -25,7 +25,28 @@
             </div>
             <div class="form-group">
                 <label for="Location">Location Found</label>
-                <input type="text" class="form-control" name="Location" id="Location" placeholder="$location">
+                <input type="text" class="form-control" name="Location" id="Location" onfocusin="getLocation()">
+                <script>
+                    function getLocation() {
+                        console.log('mdsegoem');
+                        let locationField = document.getElementById('Location');
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(function(pos) {
+                                    let latitude = pos.coords.latitude;
+                                    let longitude = pos.coords.longitude;
+                                    locationField.value = `${latitude}, ${longitude}`;
+                                },
+                                function(error) {
+                                    console.log('Error occured in getting position')
+                                });
+                            }
+                            else {
+                                window.alert('Geolocation is not supported')
+                                return null;
+                            }
+                    }
+
+                </script>
             </div>
             <div class="form-group">
                 <label for="Date_Seen">Date Seen</label>
@@ -100,15 +121,6 @@
 </html>
 
 <script>
-    function getLocation(){
-        if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(pos);
-        } else {
-            window.alert('Geolocation is not supported')
-            return null;
-        }
-    }
-
     function checkFlowers() {
         let check = document.getElementById('Flowers');
         let colour = document.getElementById('colourText')
