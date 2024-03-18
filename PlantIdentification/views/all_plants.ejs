@@ -3,20 +3,104 @@
     <head>
         <%- include('./partial/head.ejs'); %>
         <title><% title %></title>
-
+    </head>
     <header>
         <%- include('./partial/header.ejs'); %>
     </header>
 
     <body>
-
         <div class="container py-4 py-xl-5">
             <div class="row mb-5">
                 <div class="text-center mx-auto">
                     <h2>Plant Finder</h2>
                     <p class="w-lg-50">View Posts from the Community</p>
-                </div>
 
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Filter
+                    </button>
+
+
+
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="dropdown mb-3">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Order by
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Most Recent</a>
+                                        <a class="dropdown-item" href="#">Date/Time seen</a>
+                                        <a class="dropdown-item" href="#">Distance</a>
+
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="container mb-3">
+                                        <legend>Identification</legend>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="identification_true" name="identification_true" checked />
+                                                <label for="identification_true">Completed</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="identification_false" name="identification_false" checked />
+                                                <label for="identification_false">Unknown</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container mb-3">
+                                        <legend>Plant Characteristics</legend>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="with_flowers" name="with_flowers" checked />
+                                                <label for="with_flowers">Flowers</label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="without_flowers" name="without_flowers" checked />
+                                                <label for="without_flowers">No Flowers</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="with_leaves" name="with_leaves" checked />
+                                                <label for="with_leaves">With Leaves</label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="without_leaves" name="without_leaves" checked />
+                                                <label for="without_leaves">Without Leaves</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="with_seeds" name="with_seeds" checked />
+                                                <label for="with_seeds">Seeds</label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="checkbox" id="with_fruits" name="with_fruits" checked/>
+                                                <label for="with_fruits">Fruits</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
                 <% data.forEach(plant => { %>
@@ -36,6 +120,11 @@
                 <% }); %>
             </div>
         </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
 
     <footer>
