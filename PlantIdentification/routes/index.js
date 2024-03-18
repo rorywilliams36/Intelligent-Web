@@ -36,13 +36,22 @@ router.post('/add_comment', function(req, res, next) {
   res.redirect('/');
 });
 
-router.get('/all_plants', function(req,res,next) {
-  let result = plants.getAll()
-  result.then(plants => {
-    let data = JSON.parse(plants);
-    console.log(data.length)
-    res.render('all_plants', {title: 'View Plants', data: data});
-  })
+router.get('/all_plants', function(req, res, next) {
+  let result = plants.getAll();
+  result.then(plant => {
+    let data = JSON.parse(plant);
+    console.log('Should I filter?');
+
+    if (Object.keys(req.query).length > 0) {
+      console.log('Applying filter...');
+      // Call filterPlants from plantsController
+      data = plants.filterPlants(data, req.query);
+    }
+    res.render('all_plants', { title: 'View Plants', data: data });
+  }).catch(error => {
+    console.error('Error:', error);
+    res.status(500).send('An error occurred');
+  });
 });
 
 /* GET nickname page. */

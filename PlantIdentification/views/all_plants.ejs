@@ -16,9 +16,19 @@
                     <p class="w-lg-50">View Posts from the Community</p>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Filter
-                    </button>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Filter</button>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort by
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#">Most Recent</a>
+                                <a class="dropdown-item" href="#">Date/Time seen</a>
+                                <a class="dropdown-item" href="#">Distance</a>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -30,74 +40,55 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
                             </div>
+                            <form>
                             <div class="modal-body">
-                                <div class="dropdown mb-3">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Order by
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Most Recent</a>
-                                        <a class="dropdown-item" href="#">Date/Time seen</a>
-                                        <a class="dropdown-item" href="#">Distance</a>
-
-                                    </div>
-                                </div>
                                 <fieldset>
                                     <div class="container mb-3">
                                         <legend>Identification</legend>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="identification_true" name="identification_true" checked />
-                                                <label for="identification_true">Completed</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="identification_false" name="identification_false" checked />
-                                                <label for="identification_false">Unknown</label>
-                                            </div>
+                                            <select id="identification" name="identification">
+                                                <option value="any" selected>Any</option>
+                                                <option value="true" >Identified</option>
+                                                <option value="false">Unknown</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="container mb-3">
                                         <legend>Plant Characteristics</legend>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="with_flowers" name="with_flowers" checked />
-                                                <label for="with_flowers">Flowers</label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="without_flowers" name="without_flowers" checked />
-                                                <label for="without_flowers">No Flowers</label>
-                                            </div>
+                                            <label for="flowers">Flower Type:</label>
+                                            <select id="flowers" name="flowers">
+                                                <option value="any" selected>Any</option>
+                                                <option value="true" >Has Flowers</option>
+                                                <option value="false">No Flowers</option>
+                                            </select>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="with_leaves" name="with_leaves" checked />
-                                                <label for="with_leaves">With Leaves</label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="without_leaves" name="without_leaves" checked />
-                                                <label for="without_leaves">Without Leaves</label>
-                                            </div>
+                                            <label for="leaves">Leaves Type:</label>
+                                            <select id="leaves" name="leaves">
+                                                <option value="any" selected>Any</option>
+                                                <option value="true" >Has Leaves</option>
+                                                <option value="false">No Leaves</option>
+                                            </select>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="with_seeds" name="with_seeds" checked />
-                                                <label for="with_seeds">Seeds</label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <input type="checkbox" id="with_fruits" name="with_fruits" checked/>
-                                                <label for="with_fruits">Fruits</label>
-                                            </div>
+                                            <label for="fruits">Fruit Type:</label>
+                                            <select id="fruits" name="fruits">
+                                                <option value="any" selected>Any</option>
+                                                <option value="seed">Seed Only</option>
+                                                <option value="fruit">Fruit</option>
+                                                <option value="none">None</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button class="btn btn-danger" data-dismiss="modal" onclick="location.href='/all_plants';">Reset</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
