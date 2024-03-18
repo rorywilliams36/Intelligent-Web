@@ -25,28 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="Location">Location Found</label>
-                <input type="text" class="form-control" name="Location" id="Location" onfocusin="getLocation()">
-                <script>
-                    function getLocation() {
-                        console.log('mdsegoem');
-                        let locationField = document.getElementById('Location');
-                            if (navigator.geolocation) {
-                                navigator.geolocation.getCurrentPosition(function(pos) {
-                                    let latitude = pos.coords.latitude;
-                                    let longitude = pos.coords.longitude;
-                                    locationField.value = `${latitude}, ${longitude}`;
-                                },
-                                function(error) {
-                                    console.log('Error occured in getting position')
-                                });
-                            }
-                            else {
-                                window.alert('Geolocation is not supported')
-                                return null;
-                            }
-                    }
-
-                </script>
+                <input type="text" class="form-control" name="Location" id="Location" onfocus="getLocation()">
             </div>
             <div class="form-group">
                 <label for="Date_Seen">Date Seen</label>
@@ -121,6 +100,7 @@
 </html>
 
 <script>
+    // Function to display a text field for flower colour
     function checkFlowers() {
         let check = document.getElementById('Flowers');
         let colour = document.getElementById('colourText')
@@ -129,6 +109,26 @@
         }
         else {
             colour.style.display = "none";
+        }
+    }
+
+    // Function to get geolocation of user
+    function getLocation() {
+        console.log('mdsegoem');
+        let locationField = document.getElementById('Location');
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                    let latitude = pos.coords.latitude;
+                    let longitude = pos.coords.longitude;
+                    locationField.value = `${latitude}, ${longitude}`;
+                },
+                function(error) {
+                    console.log('Error occured in getting position')
+                });
+        }
+        else {
+            window.alert('Geolocation is not supported')
+            return null;
         }
     }
 </script>
