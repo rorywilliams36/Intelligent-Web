@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var geolocation = require('geolocation');
 
 const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
@@ -24,9 +23,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Plant' });
 });
 
-router.post('/add_plant', function(req, res, next ) {
+router.post('/add_plant', upload.single('Img'),function(req, res, next ) {
   let data = req.body;
-  let result = plants.create(data);
+  let filepath = req.file.path;
+  let result = plants.create(data, filepath);
   console.log(result);
   res.redirect('/');
 });
@@ -67,16 +67,27 @@ router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
 });
 
-router.post('/submit-plant', function(req, res, next) {
+router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   const plantData = req.body;
+
+  // Tries to get filepath from the request
+  let filepath;
+  try {
+    filepath = req.file.path;
+  }
+  catch(e) {
+    filepath = null
+  }
+
+  // Set values from checkboxes to true/false
   plantData.Status = plantData.Status === 'on';
   plantData.Leaves = plantData.Leaves === 'on';
   plantData.Flowers = plantData.Flowers === 'on';
 
   console.log('Form Submitted');
-  // res.('Form submitted successfully')
 
-  plants.create(plantData).catch(error => {
+  // Add data to db
+  plants.create(plantData, filepath).catch(error => {
     console.error(error);
     res.status(500).send('Error in Submission');
     res.redirect('/');
