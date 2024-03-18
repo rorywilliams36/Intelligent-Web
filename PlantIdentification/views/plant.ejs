@@ -15,18 +15,20 @@
                 <div class="card-body">
                     <h4 class="text-bg-primary py-2 px-3 rounded"><strong><%= data.Plant_Name%></strong></h4>
                     <div class="container">
+                        <!-- General -->
                         <div class="row mb-3">
                             <div class="col-md-12"><i class="fa-regular fa-calendar-days"></i><strong class="text-start" style="margin-left: 0.2em;">Date Seen: </strong><%= new Date(data.Date_Seen).toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></div>
                             <div class="col-md-6"><i class="fa-solid fa-map-location-dot"></i><strong class="text-start" style="margin-left: 0.2em;">Location: </strong><%= data.Location %></div>
                             <div class="col-md-6"><i class="fa-solid fa-user-tag"></i><strong class="text-start" style="margin-left: 0.2em;">User: </strong><%= data.Username %></div>
 
                         </div>
+                        <!-- Plant Measurements -->
                         <div class="row mb-3">
                             <h5>Plant Size</h5>
                             <div class="col-md-6"><i class="fa-solid fa-up-down"></i><strong class="text-start" style="margin-left: 0.2em;">Height: </strong><%= data.Height %>m</div>
                             <div class="col-md-6"><i class="fa-solid fa-arrows-left-right"></i><strong class="text-start" style="margin-left: 0.2em;">Spread: </strong><%= data.Spread %>m</div>
                         </div>
-                        <!-- Plant Characteristics-->
+                        <!-- Plant Characteristics -->
                         <div class="row mb-3">
                             <h5>Plant Characteristics</h5>
                             <div class="col-md-6"><i class="fa-solid fa-spa"></i><strong class="text-start" style="margin-left: 0.2em;">Does the plant flower? </strong><%= data.Flowers %></div>
@@ -39,6 +41,7 @@
                             <h5>Description</h5>
                             <div class="col-md-12"><%= data.Description %></div>
                         </div>
+                        <!-- DBPedia Identification -->
                         <div class="card mt-3 mb-3">
                             <div class="card-body" style="background: #f0ffee;">
                                 <h4 class="card-title">Identification</h4>
