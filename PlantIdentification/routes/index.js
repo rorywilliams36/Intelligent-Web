@@ -64,6 +64,25 @@ router.get('/plant/:id', function(req, res, next) {
 
 router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
-})
+});
+
+router.post('/submit-plant', function(req, res, next) {
+  const plantData = req.body;
+  plantData.Status = plantData.Status === 'on';
+  plantData.Leaves = plantData.Leaves === 'on';
+  plantData.Flowers = plantData.Flowers === 'on';
+
+
+  console.log('Form Submitted');
+  // res.('Form submitted successfully')
+
+  plants.create(plantData).catch(error => {
+    console.error(error);
+    res.status(500).send('Error in Submission');
+    res.redirect('/');
+
+  });
+  res.redirect('/');
+});
 
 module.exports = router;

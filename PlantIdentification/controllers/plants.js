@@ -3,23 +3,20 @@ const plantModel = require('../models/plants');
 
 // Function to create new plant instances
 // Plant created using schema
-exports.create = function(data) {
-    let plant = new plantModel({
-        PlantName: data.Plant_Name,
-        Status: false
-    });
-
-    // Return plant instance
-    return plant.save().then(plant => {
-        console.log(plant);
+exports.create = async function(data) {
+    let plant = new plantModel(data);
+    console.log(plant)
+    try {
+        await plantModel.insertMany(plant);
+        console.log('Item added Successfully')
         return JSON.stringify(plant);
-
-    }).catch(err => {
-        console.log(err);
-        // If error occurs return null
+    }
+    catch (e) {
+        console.log(e)
+        console.log('Error adding items to database');
         return null;
-    });
-}
+    }
+};
 
 // Return all items in collection
 exports.getAll = function() {

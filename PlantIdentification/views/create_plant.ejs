@@ -10,70 +10,87 @@
 
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <form class="card col-md-6 mb-5 mx-auto">
+        <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="inputPlantName">Plant Name</label>
-                    <input type="text" class="form-control" id="inputPlantName" placeholder="Plant Name">
+                    <label for="Plant_Name">Plant Name</label>
+                    <input type="text" class="form-control" name="Plant_Name" id="Plant_Name" placeholder="Plant Name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="Username">Username</label>
+                    <input type="text" class="form-control" name="Username" id="Username" placeholder="Username">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputAddress">Location Found</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Sheffield">
+                <label for="Location">Location Found</label>
+                <input type="text" class="form-control" name="Location" id="Location" placeholder="Sheffield">
             </div>
             <div class="form-group">
-                <label for="inputDate">Date Seen</label>
-                <input type="text" class="form-control" id="inputDate" placeholder="YYYY-MM-DD">
+                <label for="Date_Seen">Date Seen</label>
+                <input type="text" class="form-control" name="Date_Seen" id="Date_Seen" placeholder="YYYY-MM-DD">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputSize">Size</label>
-                <input type="number" class="form-control" id="inputSize" placeholder="Size">
+                <label for="Height">Height</label>
+                <input type="number" class="form-control" name="Height" id="Height" placeholder="Height (m)">
             </div>
-            <div class="form-group">
-                <div class="form-check btn-outline-dark">
-                    <input class="form-check-input" type="checkbox" id="flowers">
-                    <label class="form-check-label" for="flowers">
-                        Flowers?
-                    </label>
+            <div class="form-group col-md-6">
+                <label for="Spread">Spread</label>
+                <input type="number" class="form-control" name="Spread" id="Spread" placeholder="Spread (m)">
+            </div>
+            <div class="d-inline-flex">
+                <div class="form-group">
+                    <div class="form-check btn-outline-dark">
+                        <input class="form-check-input" type="checkbox" name="Flowers" id="Check" onclick="checkFlowers()">
+                        <label class="form-check-label" for="Flowers">
+                            Flowers?
+                        </label>
+                        <div id="checkbox-value"></div>
+                    </div>
+                    <div style="display: None" id="colourText">
+                        <label for="Flower_Colour">Flower Colour </label>
+                        <textarea class="form-control" id="Flower_Colour" name="Flower_Colour" rows="1"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="Leaves" id="Check">
+                        <label class="form-check-label" for="Leaves">
+                            Leaves?
+                        </label>
+                        <div id="checkbox-value"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Seeds and Fruits Select" name="Fruit_Seeds" id="Fruit_Seeds">
+                        <option value="1">Seeds and Fruits</option>
+                        <option value="2">Fruits</option>
+                        <option value="3">Seeds</option>
+                        <option value="4">None</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Sun Exposure Select" name="Sun_Exposure" id="Sun_Exposure">
+                        <option value="1">Full Sun</option>
+                        <option value="2">Partial Shade</option>
+                        <option value="3">Full Shade</option>
+                        <option value="4">N/a</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="leaves">
-                    <label class="form-check-label" for="leaves">
-                        Leaves?
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <select class="form-select" aria-label="Seeds and Fruits Select">
-                    <option selected>Seeds/Fruits</option>
-                    <option value="1">Seeds and Fruits</option>
-                    <option value="2">Fruits</option>
-                    <option value="3">Seeds</option>
-                    <option value="4">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-select" aria-label="Sun Exposure Select">
-                    <option selected>Sun Exposure</option>
-                    <option value="1">Full Sun</option>
-                    <option value="2">Partial Shade</option>
-                    <option value="3">Full Shade</option>
-                    <option value="4">N/a</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+                <label for="Description">Description</label>
+                <textarea class="form-control" name="Description" id="Description" rows="3"></textarea>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Solved
+                <label class="form-check-label" for="Status">
+                <input class="form-check-input" type="checkbox" name="Status" id="Check">
+                    Status
                 </label>
+                <div id="checkbox-value"></div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit Plant</button>
+            <button type="submit" class="btn btn-primary" >Submit Plant</button>
         </form>
     </body>
 
@@ -81,3 +98,29 @@
         <%- include('./partial/footer.ejs'); %>
     </footer>
 </html>
+
+<script>
+    function checkFlowers() {
+        let check = document.getElementById('Flowers');
+        let colour = document.getElementById('colourText')
+        if (check.checked) {
+            colour.style.display = "block";
+        }
+        else {
+            colour.style.display = "none";
+        }
+    }
+
+    // // Credit: https://stackoverflow.com/questions/37073010/checkbox-value-true-false
+    // $('#checkbox-value').text($('#Check').val());
+    //
+    // $("#Check").on('change', function() {
+    //     if ($(this).is(':checked')) {
+    //         $(this).attr('value', 'true');
+    //     } else {
+    //         $(this).attr('value', 'false');
+    //     }
+    //
+    //     $('#checkbox-value').text($('#Check').val());
+    // });
+</script>
