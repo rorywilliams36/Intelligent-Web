@@ -25,7 +25,7 @@ const seedData = [
         Flowers: true,
         Flower_Colour: 'Red',
         Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'Seeds',
+        Fruit_Seeds: 'Seeds Only',
         Height: 7.5,
         Spread: 2,
         Status: true,
@@ -54,7 +54,7 @@ const seedData = [
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'Seeds',
+        Fruit_Seeds: 'Seeds Only',
         Height: 100,
         Spread: 100,
         Status: false,
@@ -69,7 +69,7 @@ const seedData = [
         Flowers: true,
         Flower_Colour: 'Yellow',
         Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'Seeds',
+        Fruit_Seeds: 'Seeds Only',
         Height: 15,
         Spread: 5,
         Status: false,
@@ -84,12 +84,25 @@ const seedData = [
         Flowers: true,
         Flower_Colour: 'Red',
         Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'Seeds',
+        Fruit_Seeds: 'Seeds Only',
         Height: 7,
         Spread: 5,
         Status: false,
         Username: "Rory123",
         Description: "Very prickly/spikey"
+    },
+    {
+        Plant_Name: 'Apple Tree',
+        Date_Seen: new Date('06-15-2023'),
+        Location: 'London',
+        Leaves: true,
+        Flowers: false,
+        Sun_Exposure: 'Full Sun',
+        Fruit_Seeds: 'Fruits and Seeds',
+        Height: 12,
+        Spread: 10,
+        Status: true,
+        Username: "Rory123"
     }
 ];
 
