@@ -74,10 +74,10 @@ exports.filterPlants = function(all_plants, filter_params) {
         // &with_seeds=on&with_fruits=on
         if (filter_params.fruits) {
             console.log(plant.Plant_Name, plant.Fruit_Seeds[0])
-            if (filter_params.fruits == 'seed' && !plant.Fruit_Seeds[0] == 'Seeds') {
+            if (filter_params.fruits == 'seed' && !plant.Fruit_Seeds[0] == 'Seeds Only') {
                 return false; // Filter out plants not matching
             }
-            if (filter_params.fruits == 'fruit' && !plant.Fruit_Seeds[0] == 'Fruits') {
+            if (filter_params.fruits == 'fruit' && !plant.Fruit_Seeds[0] == 'Fruit Only') {
                 return false; // Filter out plants not matching
             }
             if (filter_params.fruits == 'none' && !plant.Fruit_Seeds[0] == 'None') {
