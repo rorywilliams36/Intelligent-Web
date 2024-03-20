@@ -90,25 +90,30 @@ exports.filterPlants = function(all_plants, filter_params) {
 
 // Function to sort plants by either date or geolocation
 exports.sortPlants = function(all_plants, sort) {
-    console.log(sort)
-    console.log('Before sorting: ', all_plants[0]);
     // Sort plants based on sort_params
     if (sort == 'recent') {
-        console.log('Sorting by: recent ', sort);
         all_plants.sort((a, b) => {
             return new Date(b.Date_Seen) - new Date(a.Date_Seen);
         });
     } else if (sort == 'oldest') {
-        console.log('Sorting by: oldest ', sort);
         all_plants.sort((a, b) => {
             return new Date(a.Date_Seen) - new Date(b.Date_Seen);
         });
     } else if (sort == 'location') {
-        console.log('Sorting by: location ', sort);
+        // Get user's location
+        let user_location = '53.3827625, -1.4883414'
+        let user_long = parseFloat(user_location.split(',')[1]);
+        let user_lat = parseFloat(user_location.split(',')[0]);
+        // Go through each plant, find distance from user long/lat and sort by closest to furthest
         all_plants.sort((a, b) => {
-            return b.Location.localeCompare(a.Location);
+            let plant_long = parseFloat(a.Location.split(',')[1]);
+            let plant_lat = parseFloat(a.Location.split(',')[0]);
+            let distance_a = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
+            plant_long = parseFloat(b.Location.split(',')[1]);
+            plant_lat = parseFloat(b.Location.split(',')[0]);
+            let distance_b = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
+            return distance_a - distance_b;
         });
     }
-    console.log('After sorting: ', all_plants[0]);
     return all_plants;
 }
