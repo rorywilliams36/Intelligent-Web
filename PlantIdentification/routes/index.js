@@ -48,6 +48,16 @@ router.get('/all_plants', function(req, res, next) {
       // Call filterPlants from plantsController
       data = plants.filterPlants(data, req.query);
     }
+
+    console.log('Should I sort?');
+
+    if (req.query.sort) {
+      console.log('Applying sort...');
+      // Call sortPlants from plantsController
+      console.log('Sorting by:', req.query.sort);
+      data = plants.sortPlants(data, req.query.sort);
+    }
+
     res.render('all_plants', { title: 'View Plants', data: data });
   }).catch(error => {
     console.error('Error:', error);
