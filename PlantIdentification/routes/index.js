@@ -76,7 +76,7 @@ router.get('/plant/:id', function(req, res, next) {
   console.log(req.params.id)
   result.then(plant => {
     let data = JSON.parse(plant)
-    res.render('plant', { title: data.Plant_Name + ' - Plant', data: data });
+    res.render('plant', { title: data.Plant_Name, data: data });
   }).catch(error => {
     console.error(error);
     res.status(500).send('Error retrieving plant');
