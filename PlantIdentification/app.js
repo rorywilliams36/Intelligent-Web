@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var favicon = require('serve-favicon');
 var app = express();
 
 // view engine setup
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public/images/uploads', express.static(path.join(__dirname, '/public/images/uploads')));
-
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
