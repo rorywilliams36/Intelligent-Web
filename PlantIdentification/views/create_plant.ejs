@@ -118,7 +118,6 @@
 
     // Function to get geolocation of user
     function getLocation() {
-        console.log('mdsegoem');
         let locationField = document.getElementById('Location');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(pos) {
@@ -127,7 +126,7 @@
                     locationField.value = `${latitude}, ${longitude}`;
                 },
                 function(error) {
-                    console.log('Error occured in getting position')
+                    console.log('Error occurred in getting position')
                 });
         }
         else {

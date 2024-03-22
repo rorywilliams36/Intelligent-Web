@@ -6,7 +6,7 @@ const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
 
 var storage = multer.diskStorage({
-  function(req, file, cb) {
+  destination: function(req, file, cb) {
     cb(null, 'public/images/uploads/');
   },
   filename: function(req,file, cb) {
