@@ -72,10 +72,12 @@ router.get('/plant/:id', function(req, res, next) {
   });
 });
 
+// Gets page to add plants
 router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
 });
 
+// For plant form submission
 router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   const plantData = req.body;
 
