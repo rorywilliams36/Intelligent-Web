@@ -48,7 +48,17 @@ router.get('/all_plants', function(req, res, next) {
       // Call filterPlants from plantsController
       data = plants.filterPlants(data, req.query);
     }
-    res.render('all_plants', { title: 'View Plants', data: data });
+
+    console.log('Should I sort?');
+
+    if (req.query.sort) {
+      console.log('Applying sort...');
+      // Call sortPlants from plantsController
+      console.log('Sorting by:', req.query.sort);
+      data = plants.sortPlants(data, req.query.sort);
+    }
+
+    res.render('all_plants', { title: 'All Plants', data: data });
   }).catch(error => {
     console.error('Error:', error);
     res.status(500).send('An error occurred');
@@ -65,7 +75,8 @@ router.get('/plant/:id', function(req, res, next) {
   let result = plants.getById(req.params.id); // Assuming a function getById exists in your plants controller
   console.log(req.params.id)
   result.then(plant => {
-    res.render('plant', { title: 'Plant', data: JSON.parse(plant) });
+    let data = JSON.parse(plant)
+    res.render('plant', { title: data.Plant_Name, data: data });
   }).catch(error => {
     console.error(error);
     res.status(500).send('Error retrieving plant');

@@ -23,10 +23,6 @@ exports.create = async function(data, filepath) {
 exports.getAll = function() {
     return plantModel.find({}).then(plants => {
         return JSON.stringify(plants);
-    }).catch(err => {
-        console.log(err);
-        // return null if error occurs
-        return null;
     });
 };
 
@@ -34,10 +30,6 @@ exports.getAll = function() {
 exports.getById = function(plantId) {
     return plantModel.findById(plantId).then(plant => {
         return JSON.stringify(plant);
-    }).catch(err => {
-        console.log(err);
-        // Return null if error occurs
-        return null;
     });
 };
 
@@ -54,7 +46,8 @@ exports.filterPlants = function(all_plants, filter_params) {
             }
             if (filter_params.identification == 'false' && !plant.Status == false) {
                 return false; // Filter out plants not matching
-        }}
+            }
+        }
         // &with_flowers=on&without_flowers=on
         if (filter_params.flowers) {
             if (filter_params.flowers == 'true' && !plant.Flowers == true) {
@@ -62,7 +55,8 @@ exports.filterPlants = function(all_plants, filter_params) {
             }
             if (filter_params.flowers == 'false' && !plant.Flowers == false) {
                 return false; // Filter out plants not matching
-        }}
+            }
+        }
         // &with_leaves=on&without_leaves=on
         if (filter_params.leaves) {
             if (filter_params.leaves == 'true' && !plant.Leaves == true) {
@@ -70,7 +64,8 @@ exports.filterPlants = function(all_plants, filter_params) {
             }
             if (filter_params.leaves == 'false' && !plant.Leaves == false) {
                 return false; // Filter out plants not matching
-        }}
+            }
+        }
         // &with_seeds=on&with_fruits=on
         if (filter_params.fruits) {
             console.log(plant.Plant_Name, plant.Fruit_Seeds[0])
@@ -85,9 +80,40 @@ exports.filterPlants = function(all_plants, filter_params) {
             }
             if (filter_params.fruits == 'none' && plant.Fruit_Seeds[0] !== 'None') {
                 return false; // Filter out plants not matching
-        }}
+            }
+        }
 
         return true; // Plant passed all filters
     });
     return filteredPlants;
 };
+
+// Function to sort plants by either date or geolocation
+exports.sortPlants = function(all_plants, sort) {
+    // Sort plants based on sort_params
+    if (sort == 'recent') {
+        all_plants.sort((a, b) => {
+            return new Date(b.Date_Seen) - new Date(a.Date_Seen);
+        });
+    } else if (sort == 'oldest') {
+        all_plants.sort((a, b) => {
+            return new Date(a.Date_Seen) - new Date(b.Date_Seen);
+        });
+    } else if (sort == 'location') {
+        // Get user's location
+        let user_location = '53.3827625, -1.4883414'
+        let user_long = parseFloat(user_location.split(',')[1]);
+        let user_lat = parseFloat(user_location.split(',')[0]);
+        // Go through each plant, find distance from user long/lat and sort by closest to furthest
+        all_plants.sort((a, b) => {
+            let plant_long = parseFloat(a.Location.split(',')[1]);
+            let plant_lat = parseFloat(a.Location.split(',')[0]);
+            let distance_a = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
+            plant_long = parseFloat(b.Location.split(',')[1]);
+            plant_lat = parseFloat(b.Location.split(',')[0]);
+            let distance_b = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
+            return distance_a - distance_b;
+        });
+    }
+    return all_plants;
+}

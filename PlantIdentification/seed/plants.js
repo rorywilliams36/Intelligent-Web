@@ -4,9 +4,24 @@ const plants = require('../models/plants');
 
 const seedData = [
     {
+        Plant_Name: 'Bluetips',
+        Date_Seen: new Date('08-12-2023'),
+        Location: '40.730610, -73.935242', // New York
+        Leaves: true,
+        Flowers: true,
+        Flower_Colour: 'Light Blue',
+        Sun_Exposure: 'Full Sun',
+        Fruit_Seeds: 'None',
+        Height: 5,
+        Spread: 5,
+        Status: false,
+        Username: "Ben123",
+        Description: "Has bright blue"
+    },
+    {
         Plant_Name: 'Poison Ivy',
         Date_Seen: new Date('06-11-2023'),
-        Location: 'Manchester',
+        Location: '53.3827625, -1.4883414', // Sheffield
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Partial Shade',
@@ -20,7 +35,7 @@ const seedData = [
     {
         Plant_Name: 'Rose',
         Date_Seen: new Date('12-22-2023'),
-        Location: 'Sheffield',
+        Location: '53.3814, -1.4746', // Sheffield City Centre
         Leaves: true,
         Flowers: true,
         Flower_Colour: 'Red',
@@ -33,24 +48,9 @@ const seedData = [
         Description: "Red and thorny"
     },
     {
-        Plant_Name: 'Bluetips',
-        Date_Seen: new Date('08-12-2023'),
-        Location: 'Brighton',
-        Leaves: true,
-        Flowers: true,
-        Flower_Colour: 'Light Blue',
-        Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'None',
-        Height: 5,
-        Spread: 5,
-        Status: false,
-        Username: "Ben123",
-        Description: "Has bright blue"
-    },
-    {
         Plant_Name: 'Yew',
         Date_Seen: new Date('12-15-2023'),
-        Location: 'London',
+        Location: '40.730610, -73.935242',
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Full Sun',
@@ -64,7 +64,7 @@ const seedData = [
     {
         Plant_Name: 'Sunflower',
         Date_Seen: new Date('08-03-2024'),
-        Location: 'Manchester',
+        Location: '39.876019, -117.224121', // Nevada
         Leaves: true,
         Flowers: true,
         Flower_Colour: 'Yellow',
@@ -79,7 +79,7 @@ const seedData = [
     {
         Plant_Name: 'Cactus',
         Date_Seen: new Date('06-15-2023'),
-        Location: 'Nevada',
+        Location: '39.876019, -117.224121',
         Leaves: false,
         Flowers: true,
         Flower_Colour: 'Red',
@@ -94,7 +94,7 @@ const seedData = [
     {
         Plant_Name: 'Apple Tree',
         Date_Seen: new Date('06-15-2023'),
-        Location: 'London',
+        Location: '39.876019, -117.224121',
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Full Sun',
