@@ -103,6 +103,22 @@ const seedData = [
         Spread: 10,
         Status: true,
         Username: "Rory123"
+    },
+    {
+        Plant_Name: "Bamboo",
+        Username: "Rory123",
+        Date_Seen: new Date("2024-03-12T00:00:00.000Z"),
+        Location: "53.3705589, -1.4938998",
+        Description: "",
+        Height: 12,
+        Spread: 2,
+        Flowers: false,
+        Flower_Colour: "",
+        Leaves: true,
+        Sun_Exposure: "Full Sun",
+        Fruit_Seeds: "Seeds Only",
+        Status: false,
+        Img: "public\\images\\uploads\\1711120905817.jpg",
     }
 ];
 
