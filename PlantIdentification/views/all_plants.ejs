@@ -114,6 +114,8 @@
                     <div class="col">
                         <div>
                             <%
+                                // Displays image from database
+                                // If no image found uses default image
                                 let default_img = "https://media.istockphoto.com/id/658291850/photo/young-plant-growing-in-sunlight.jpg?s=612x612&w=0&k=20&c=ZH9gmP8dLhwNaWuVbtBz99Fkybg_B0Uanw88QXSdMnY=";
                                 if (plant.Img) { %>
                                     <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src= "<%= plant.Img %>" alt="Plant">
