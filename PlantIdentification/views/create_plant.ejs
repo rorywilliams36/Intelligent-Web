@@ -13,19 +13,19 @@
         <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="Plant_Name">Plant Name</label>
+                    <label for="Plant_Name"></label>
                     <input type="text" class="form-control" name="Plant_Name" id="Plant_Name" placeholder="Plant Name">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="Username">Username</label>
+                    <label for="Username"></label>
                     <input type="text" class="form-control" name="Username" id="Username" placeholder="Username">
                 </div>
             </div>
-            <div class="form-group d-inline-flex cols-md-6">
-                <label for="Location">Location: </label>
-                <input type="text" class="form-control" name="Location" id="Location">
+            <div class="form-group d-inline-flex cols-md-6 input-group mb-3">
+                <label for="Location"></label>
+                <input type="text" class="form-control" placeholder="Location" name="Location" id="Location">
                 <button type="button" class="btn btn-info btn-sm" onclick="getLocation()">Get Location</button>
             </div>
             <div class="form-group">
@@ -33,34 +33,32 @@
                 <input type="text" class="form-control" name="Date_Seen" id="Date_Seen" placeholder="YYYY-MM-DD">
             </div>
             <div class="form-group col-md-6">
-                <label for="Height">Height</label>
+                <label for="Height"></label>
                 <input type="number" class="form-control" name="Height" id="Height" placeholder="Height (m)">
             </div>
             <div class="form-group col-md-6">
-                <label for="Spread">Spread</label>
+                <label for="Spread"></label>
                 <input type="number" class="form-control" name="Spread" id="Spread" placeholder="Spread (m)">
             </div>
             <div class="d-inline-flex">
                 <div class="form-group">
-                    <div class="form-check btn-outline-dark">
+                    <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="Flowers" id="Flowers" onclick="checkFlowers()">
                         <label class="form-check-label" for="Flowers">
                             Flowers?
                         </label>
-                        <div id="checkbox-value"></div>
                     </div>
                     <div style="display: None" id="colourText">
-                        <label for="Flower_Colour">Flower Colour </label>
-                        <textarea class="form-control" id="Flower_Colour" name="Flower_Colour" rows="1"></textarea>
+                        <label for="Flower_Colour"></label>
+                        <textarea class="form-control" id="Flower_Colour" placeholder="Flower Colour" name="Flower_Colour" rows="1"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="form-check">
+                    <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="Leaves" id="Leaves">
                         <label class="form-check-label" for="Leaves">
                             Leaves?
                         </label>
-                        <div id="checkbox-value"></div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -118,7 +116,6 @@
 
     // Function to get geolocation of user
     function getLocation() {
-        console.log('mdsegoem');
         let locationField = document.getElementById('Location');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(pos) {
@@ -127,7 +124,7 @@
                     locationField.value = `${latitude}, ${longitude}`;
                 },
                 function(error) {
-                    console.log('Error occured in getting position')
+                    console.log('Error occurred in getting position')
                 });
         }
         else {

@@ -6,7 +6,7 @@ const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
 
 var storage = multer.diskStorage({
-  function(req, file, cb) {
+  destination: function(req, file, cb) {
     cb(null, 'public/images/uploads/');
   },
   filename: function(req,file, cb) {
@@ -83,10 +83,12 @@ router.get('/plant/:id', function(req, res, next) {
   });
 });
 
+// Gets page to add plants
 router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
 });
 
+// For plant form submission
 router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   const plantData = req.body;
 
