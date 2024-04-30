@@ -1,1 +1,22 @@
-{"short_name":"PlantFinder","name":"PlantFinder","icons":[{"src":"/images/android-chrome-512x512.png","type":"image/png","sizes":"512x512","purpose":"any maskable"},{"src":"/assets/img/android-chrome-512x512.png","type":"image/png","sizes":"512x512","purpose":"any maskable"}],"start_url":"/","background_color":"#ffffff","theme_color":"#89C0AE","display":"standalone","orientation":"portrait"}
+{
+  "short_name": "PlantFinder",
+  "name": "PlantFinder",
+  "description": "Discover and identify various plants with PlantFinder.",
+  "icons": [
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots_urls": [
+    "/screenshots/homepage.png",
+    "/screenshots/search_page.png"
+  ],
+  "start_url": "/all_plants",
+  "background_color": "#78c2ad",
+  "theme_color": "#78c2ad",
+  "display": "standalone",
+  "orientation": "portrait"
+}
