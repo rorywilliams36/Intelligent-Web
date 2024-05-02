@@ -6,18 +6,30 @@ const plantModel = require('../models/plants');
 exports.create = async function(data, filepath) {
     data.Img = filepath;
     let plant = new plantModel(data);
-    console.log(plant)
+    console.log(plant);
+
     try {
-        await plantModel.insertMany(plant);
-        console.log('Item added Successfully')
+        // Save the plant to the database
+        await plant.save();
+
+        // Retrieve the location name using reverse geocoding
+        const latitude = plant.Location.split(',')[0];
+        const longitude = plant.Location.split(',')[1];
+        plant.Location_Name = await this.reverseGeocode(latitude, longitude);
+        console.log(plant.Location_Name);
+        
+        // Save the plant, including the Location_Name, to the database
+        await plant.save();
+
+        console.log('Item added Successfully');
         return JSON.stringify(plant);
-    }
-    catch (e) {
-        console.log(e)
+    } catch (e) {
+        console.log(e);
         console.log('Error adding items to database');
         return null;
     }
 };
+
 
 // Return all items in collection
 exports.getAll = function() {
@@ -116,4 +128,38 @@ exports.sortPlants = function(all_plants, sort) {
         });
     }
     return all_plants;
+}
+
+// Function to get a plant's reverse geolocation
+exports.reverseGeocode = async function(latitude, longitude) {
+    const key = 'AIzaSyBkyyod_8HYEyeEDqCQKd8od_F7nlITj5A';
+    const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${key}`;
+    
+    try {
+        const response = await fetch(endpoint); // Wait for the fetch operation to complete
+        const data = await response.json(); // Wait for parsing the response JSON
+        
+        if (data.status === 'OK') {
+            const addressData = data.results[0].address_components;
+            let city = null;
+            let state = null;
+            
+            for (const component of addressData) {
+                if (component.types.includes('administrative_area_level_2')) {
+                    city = component.short_name;
+                } else if (component.types.includes('administrative_area_level_1')) {
+                    state = component.short_name;
+                }
+            }
+            
+            if (city && state) {
+                return city + ', ' + state;
+            }
+        }
+        
+        return 'Unknown';
+    } catch (error) {
+        console.error('Error:', error);
+        return 'Unknown';
+    }
 }

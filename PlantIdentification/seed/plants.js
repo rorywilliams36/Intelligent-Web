@@ -7,6 +7,7 @@ const seedData = [
         Plant_Name: 'Bluetips',
         Date_Seen: new Date('08-12-2023'),
         Location: '40.730610, -73.935242', // New York
+        Location_Name: 'New York, USA',
         Leaves: true,
         Flowers: true,
         Flower_Colour: 'Light Blue',
@@ -22,6 +23,7 @@ const seedData = [
         Plant_Name: 'Poison Ivy',
         Date_Seen: new Date('06-11-2023'),
         Location: '53.3827625, -1.4883414', // Sheffield
+        Location_Name: 'Sheffield, GB',
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Partial Shade',
@@ -36,6 +38,7 @@ const seedData = [
         Plant_Name: 'Rose',
         Date_Seen: new Date('12-22-2023'),
         Location: '53.3814, -1.4746', // Sheffield City Centre
+        Location_Name: 'Sheffield, GB',
         Leaves: true,
         Flowers: true,
         Flower_Colour: 'Red',
@@ -50,7 +53,8 @@ const seedData = [
     {
         Plant_Name: 'Yew',
         Date_Seen: new Date('12-15-2023'),
-        Location: '40.730610, -73.935242',
+        Location: '53.3814, -1.4746', // Sheffield City Centre
+        Location_Name: 'Sheffield, GB',
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Full Sun',
@@ -65,6 +69,7 @@ const seedData = [
         Plant_Name: 'Sunflower',
         Date_Seen: new Date('08-03-2024'),
         Location: '39.876019, -117.224121', // Nevada
+        Location_Name: 'Nevada, USA',
         Leaves: true,
         Flowers: true,
         Flower_Colour: 'Yellow',
@@ -80,6 +85,7 @@ const seedData = [
         Plant_Name: 'Cactus',
         Date_Seen: new Date('06-15-2023'),
         Location: '39.876019, -117.224121',
+        Location_Name: 'Nevada, USA',
         Leaves: false,
         Flowers: true,
         Flower_Colour: 'Red',
@@ -95,6 +101,7 @@ const seedData = [
         Plant_Name: 'Apple Tree',
         Date_Seen: new Date('06-15-2023'),
         Location: '39.876019, -117.224121',
+        Location_Name: 'Nevada, USA',
         Leaves: true,
         Flowers: false,
         Sun_Exposure: 'Full Sun',
@@ -109,6 +116,7 @@ const seedData = [
         Username: "Rory123",
         Date_Seen: new Date("2024-03-12T00:00:00.000Z"),
         Location: "53.3705589, -1.4938998",
+        Location_Name: "Sheffield, GB",
         Description: "",
         Height: 12,
         Spread: 2,

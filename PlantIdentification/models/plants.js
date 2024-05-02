@@ -9,6 +9,7 @@ let PlantSchema = new Schema({
         Username: {type: String, required: true},
         Date_Seen: {type: Date, required: false},
         Location: {type: String, required: false, max: 100},
+        Location_Name: {type: String, required: false, max: 100},
         Description: {type: String},
         Height: {type: Number, required: false},
         Spread: {type: Number, required: false},
