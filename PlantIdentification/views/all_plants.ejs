@@ -129,13 +129,38 @@
                                 plant_img = "https://media.istockphoto.com/id/658291850/photo/young-plant-growing-in-sunlight.jpg?s=612x612&w=0&k=20&c=ZH9gmP8dLhwNaWuVbtBz99Fkybg_B0Uanw88QXSdMnY=";
                                 if (plant.Img) { plant_img = plant.Img }
                             %>
-                            <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 400px;" src= "<%= plant_img %>" alt="Plant">
+                            <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 600px;" src= "<%= plant_img %>" alt="Plant">
                             <div class="text-center text-bg-light py-4" style="padding-top: 0px;margin-top: -1px;padding-bottom: 0px;">
                                 <h4 class="text-bg-primary rounded-top" style="padding-bottom: 11px;padding-top: 10px;font-weight: bold;"><%= plant.Plant_Name %></h4>
                                 <div class="row">
-                                    <div class="col"><i class="far fa-map"></i><br><strong class="text-start" style="margin-left: 0.2em;"><a href="https://www.openstreetmap.org/#map=18/<%= long %>/<%= lat %>" target="_blank"><%= plant.Location_Name %></a></strong></div>
-                                    <div class="col"><i class="far fa-clock"></i><br><strong class="text-start" style="margin-left: 0.2em;"><%= new Date(plant.Date_Seen).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) %></strong></div>
-                                    <div class="col"><i class="far fa-user"></i><br><strong class="text-start" style="margin-left: 0.2em;"><%= plant.Username %></strong></div>
+                                    <div class="col-4">
+                                        <i class="far fa-map text-start" style="float: right;"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong class="text-center" style="margin-left: 0.1em; float: left;">
+                                            <a href="https://www.openstreetmap.org/#map=18/<%= long %>/<%= lat %>" target="_blank"><%= plant.Location_Name %></a>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="far fa-clock text-start" style="float: right;"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong class="text-center" style="margin-left: 0.1em; float: left;">
+                                            <%= new Date(plant.Date_Seen).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) %>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="far fa-user text-start" style="float: right;"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong class="text-center" style="margin-left: 0.1em; float: left;">
+                                            <%= plant.Username %>
+                                        </strong>
+                                    </div>
                                 </div>
                                 <p></p><a class="btn btn-primary" type="button" style="padding-right: 28px;padding-left: 30px;" href="/plant/<%= plant._id %>">View Post</a>
                             </div>
