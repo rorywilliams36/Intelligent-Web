@@ -11,7 +11,7 @@
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <div class="row">
-            <div class="card col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto">
+            <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-12 mx-auto">
                 <%
                     // Displays image from database
                     // If no image is found uses the defaultviews
@@ -26,16 +26,12 @@
                     <h4 class="text-bg-primary py-2 px-3 rounded"><strong><%= data.Plant_Name%></strong></h4>
                     <div class="container">
                         <!-- General -->
-                        <div class="row mb-3">
-                            <div class="col-md-6"><i class="fa-regular fa-calendar-days"></i><strong class="text-start" style="margin-left: 0.2em;">Date Seen: </strong><%= new Date(data.Date_Seen).toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></div>
-                            <div class="col-md-6"><i class="fa-solid fa-user-tag"></i><strong class="text-start" style="margin-left: 0.2em;">User: </strong><%= data.Username %></div>
-                        </div>
-                        <div class="row mb-3">
-                            <h5>Description</h5>
-                            <div class="col-md-12"><%= data.Description %></div>
-                        </div>
-                        <h5>Location</h5>
-                        <p><%= data.Location_Name %></p>
+                        <div class="col-md-12"><i class="fa-solid fa-map-marker-alt"></i><strong class="text-start" style="margin-left: 0.2em;">Location: </strong><%= data.Location_Name %></div>
+                        <div class="col-md-12"><i class="fa-regular fa-calendar-days"></i><strong class="text-start" style="margin-left: 0.2em;">Date Seen: </strong><%= new Date(data.Date_Seen).toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></div>
+                        <div class="col-md-12 mb-3"><i class="fa-solid fa-user-tag"></i><strong class="text-start" style="margin-left: 0.2em;">User: </strong><%= data.Username %></div>
+                        
+                        <!-- Location -->
+                        <h5>Map</h5>
                         <div class="border border-2 border-primary rounded" id="map"></div>
                         <script>
                             var map = L.map('map').setView([<%= long %>, <%= lat %>], 14);
@@ -51,6 +47,11 @@
                             }).addTo(map);
                         </script>
                         <br>
+                        <!-- Description -->
+                        <div class="row mb-3">
+                            <h5>Description</h5>
+                            <div class="col-md-12"><%= data.Description %></div>
+                        </div>
                         <!-- Plant Measurements -->
                         <div class="row mb-3">
                             <h5>Plant Size</h5>
