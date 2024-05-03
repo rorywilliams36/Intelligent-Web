@@ -1,6 +1,7 @@
 // Import model
 const plantModel = require('../models/plants');
-
+const { Navigator } = require("node-navigator");
+const navigator = new Navigator();
 // Function to create new plant instances
 // Plant created using schema
 exports.create = async function(data, filepath) {
@@ -113,21 +114,10 @@ exports.sortPlants = function(all_plants, sort) {
         });
     } else if (sort == 'location') {
         // Get user's location
-        let user_location = '53.3827625, -1.4883414'
-        let user_long = parseFloat(user_location.split(',')[1]);
-        let user_lat = parseFloat(user_location.split(',')[0]);
-        // Go through each plant, find distance from user long/lat and sort by closest to furthest
-        all_plants.sort((a, b) => {
-            let plant_long = parseFloat(a.Location.split(',')[1]);
-            let plant_lat = parseFloat(a.Location.split(',')[0]);
-            let distance_a = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
-            plant_long = parseFloat(b.Location.split(',')[1]);
-            plant_lat = parseFloat(b.Location.split(',')[0]);
-            let distance_b = Math.sqrt(Math.pow((user_long - plant_long), 2) + Math.pow((user_lat - plant_lat), 2));
-            return distance_a - distance_b;
-        });
+        
     }
     return all_plants;
+    
 }
 
 // Function to get a plant's reverse geolocation
@@ -163,3 +153,34 @@ exports.reverseGeocode = async function(latitude, longitude) {
         return 'Unknown';
     }
 }
+
+// Function to get a plant's location
+exports.sortPlantsByLocation = function(all_plants) {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let user_lat = position.latitude;
+            let user_long = position.longitude;
+            
+            console.log('User location:', user_lat, user_long);
+
+            // Go through each plant, find distance from user long/lat and sort by closest to furthest
+            all_plants.sort((a, b) => {
+                let a_plant_lat = parseFloat(a.Location.split(',')[0]);
+                let a_plant_long = parseFloat(a.Location.split(',')[1]);
+                
+                let b_plant_lat = parseFloat(b.Location.split(',')[0]);
+                let b_plant_long = parseFloat(b.Location.split(',')[1]);
+                
+                // Find distance of both from user
+                let a_distance = Math.sqrt(Math.pow(user_lat - a_plant_lat, 2) + Math.pow(user_long - a_plant_long, 2));
+                let b_distance = Math.sqrt(Math.pow(user_lat - b_plant_lat, 2) + Math.pow(user_long - b_plant_long, 2));
+
+                return a_distance - b_distance;
+            });
+            resolve(all_plants);
+        }, function(error) {
+            reject(error);
+        });
+    });
+};
+

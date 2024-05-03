@@ -55,10 +55,25 @@ router.get('/all_plants', function(req, res, next) {
       console.log('Applying sort...');
       // Call sortPlants from plantsController
       console.log('Sorting by:', req.query.sort);
-      data = plants.sortPlants(data, req.query.sort);
+      // console.log('before', data)
+      if (req.query.sort != 'location') {
+        data = plants.sortPlants(data, req.query.sort);
+        res.render('all_plants', { title: 'All Plants', data: data });
+      } else {
+        plants.sortPlantsByLocation(data)
+          .then(sortedPlants => {
+              console.log('Sorted plants:', sortedPlants);
+              res.render('all_plants', { title: 'All Plants', data: sortedPlants});
+              
+          })
+          .catch(error => {
+              console.error('Error getting user location:', error);
+          });
+      }
+      // console.log('after', data)
     }
 
-    res.render('all_plants', { title: 'All Plants', data: data });
+    
   }).catch(error => {
     console.error('Error:', error);
     res.status(500).send('An error occurred');
