@@ -10,9 +10,19 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots_urls": [
-    "/screenshots/homepage.png",
-    "/screenshots/search_page.png"
+  "screenshots": [
+    {
+      "src": "/screenshots/homepage.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide"
+    },
+    {
+      "src": "/screenshots/search_page.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide"
+    }
   ],
   "start_url": "/all_plants",
   "background_color": "#78c2ad",

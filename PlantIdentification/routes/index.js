@@ -70,7 +70,6 @@ router.get('/all_plants', function(req, res, next) {
               console.error('Error getting user location:', error);
           });
       }
-      // console.log('after', data)
     }
 
     
