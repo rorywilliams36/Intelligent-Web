@@ -49,7 +49,7 @@ router.get('/all_plants', function(req, res, next) {
       data = plants.filterPlants(data, req.query);
     }
 
-    console.log('Should I sort?');
+    console.log('Should I sort?', req.query.sort);
 
     if (req.query.sort) {
       console.log('Applying sort...');
@@ -59,7 +59,8 @@ router.get('/all_plants', function(req, res, next) {
       if (req.query.sort != 'location') {
         data = plants.sortPlants(data, req.query.sort);
         res.render('all_plants', { title: 'All Plants', data: data });
-      } else {
+      } 
+      else {
         plants.sortPlantsByLocation(data)
           .then(sortedPlants => {
               console.log('Sorted plants:', sortedPlants);
@@ -69,7 +70,10 @@ router.get('/all_plants', function(req, res, next) {
           .catch(error => {
               console.error('Error getting user location:', error);
           });
+          res.render('all_plants', { title: 'All Plants', data: sortedPlants});
       }
+    } else {
+      res.render('all_plants', { title: 'All Plants', data: data });
     }
 
     
