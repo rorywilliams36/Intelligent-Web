@@ -80,21 +80,24 @@
                         </div>
                         <div class="row mb-3">
                             <h3>Comments</h3>
-                            <div id="initial_form" style="display: block">
-                                <form onsubmit="return false;">
-                                    <p><label for="name"> Enter a name to comment </label>
-                                        <input type="text" id="name" name="name">
-                                    
-
-                                    <button id="connect" onclick="connectToRoom('<%= data._id %>')">Connect</button></p>
-                                </form>
-                            </div>
-                            
+                            <% if (comments.length === 0) { %>
+                                        <div class="mx-auto">
+                                            <div class="text-center">
+                                                <h3>No Comments Found</h3>
+                                                
+                                            </div>
+                                        </div>
+                                    <% }
+                                    else {
+                                    comments.forEach(comment => { %> 
+                                        <p><strong><%= comment.Username %></strong>: <%= comment.Comment %></p>
+                                    <% }) } %>
                             <div id="chat_interface" style="display: none">
                                 <div>
                                 <%# <div id="who_you_are" style="display: inline"></div>, you are in room: <div id="in_room" style="display: inline"></div> %>
                                 </div>
-                                <div id="history" class="boxed"></div>
+                                <div id="history" class="boxed">
+                                </div>
                                 <div id="input" class="bottom boxed">
                                     <form onsubmit="return false;" style="width: 100%">
                                         <p>
@@ -104,6 +107,15 @@
                                         </p>
                                     </form>
                                 </div>
+                            </div>
+                            <div id="initial_form" style="display: block">
+                                <form onsubmit="return false;">
+                                    <p><label for="name"> Enter a name to comment </label>
+                                        <input type="text" id="name" name="name">
+                                    
+
+                                    <button id="connect" onclick="connectToRoom('<%= data._id %>')">Connect</button></p>
+                                </form>
                             </div>
                         </div>
                     </div>

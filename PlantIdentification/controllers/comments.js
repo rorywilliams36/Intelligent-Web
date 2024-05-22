@@ -31,3 +31,12 @@ exports.getAll = function() {
         return null;
     });
 };
+
+exports.getPlantMessages = function(plantId) {
+    return commentModel.find({Plant: plantId}).then(comments => {
+        return JSON.stringify(comments);
+    }).catch(err => {
+        console.log(err);
+        return null;
+    });
+};

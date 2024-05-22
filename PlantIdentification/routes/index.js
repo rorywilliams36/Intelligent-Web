@@ -90,10 +90,18 @@ router.get('/login', function(req, res, next) {
 /* GET plant page. */
 router.get('/plant/:id', function(req, res, next) {
   let result = plants.getById(req.params.id); // Assuming a function getById exists in your plants controller
-  console.log(req.params.id)
+  let plantcomments = comments.getPlantMessages(req.params.id);
   result.then(plant => {
-    let data = JSON.parse(plant)
-    res.render('plant', { title: data.Plant_Name, data: data });
+    console.log('Plant loaded!')
+    plantcomments.then(comments => {
+      console.log('Comments loaded!')
+      let data = JSON.parse(plant)
+      let plantcomments = JSON.parse(comments)
+      res.render('plant', { title: data.Plant_Name, data: data, comments: plantcomments});
+    }).catch(error => {
+      console.error(error);
+      res.status(500).send('Error retrieving comments');
+    });
   }).catch(error => {
     console.error(error);
     res.status(500).send('Error retrieving plant');

@@ -17,6 +17,8 @@ function init() {
             // it enters the chat
             hideLoginInterface(room, userId);
         } else {
+            // update the history with all the messages
+            //loadMessageHistory()
             // notifies that someone has joined the room
             writeOnHistory('<b>'+userId+'</b>' + ' joined room ' + room);
         }
@@ -77,6 +79,22 @@ function writeOnHistory(text) {
     document.getElementById('chat_input').value = '';
 }
 
+function addMessageToHistory(name, message) {
+    console.log('addMessageToHistory', name, message)
+    let history = document.getElementById('history');
+    let paragraph = document.createElement('p');
+    if (name === username) {
+        paragraph.style.textAlign = 'right';
+        name = 'Me';
+    }
+    else {
+        paragraph.style.textAlign = 'left';
+    }
+    paragraph.innerHTML = '<b>' + name + ':</b> ' + message;
+    history.appendChild(paragraph);
+
+}
+
 /**
  * it hides the initial form and shows the chat
  * @param room the selected room
@@ -85,12 +103,5 @@ function writeOnHistory(text) {
 function hideLoginInterface(room, userId) {
     document.getElementById('initial_form').style.display = 'none';
     document.getElementById('chat_interface').style.display = 'block';
-    document.getElementById('who_you_are').innerHTML= userId;
     document.getElementById('in_room').innerHTML= ' '+room;
-}
-
-function idToRoomNum(roomid) {
-    console.log('Running idToRoomNum')
-    // Go through all of id and get rid of any non-numeric characters
-    return roomid.replace(/\D/g,'');
 }
