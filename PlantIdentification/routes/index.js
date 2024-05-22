@@ -88,24 +88,40 @@ router.get('/login', function(req, res, next) {
 });
 
 /* GET plant page. */
-router.get('/plant/:id', function(req, res, next) {
-  let result = plants.getById(req.params.id); // Assuming a function getById exists in your plants controller
-  let plantcomments = comments.getPlantMessages(req.params.id);
-  result.then(plant => {
-    console.log('Plant loaded!')
-    plantcomments.then(comments => {
-      console.log('Comments loaded!')
-      let data = JSON.parse(plant)
-      let plantcomments = JSON.parse(comments)
-      res.render('plant', { title: data.Plant_Name, data: data, comments: plantcomments});
-    }).catch(error => {
-      console.error(error);
-      res.status(500).send('Error retrieving comments');
-    });
-  }).catch(error => {
-    console.error(error);
-    res.status(500).send('Error retrieving plant');
-  });
+router.get('/plant/:id', async (req, res, next) => {
+  try {
+      const plantId = req.params.id;
+
+      // Fetch plant details
+      const plant = await plants.getById(plantId);
+      console.log('Plant loaded!');
+
+      // Fetch plant comments
+      const plantComments = await comments.getPlantMessages(plantId);
+      console.log('Comments loaded!');
+
+      // Parse plant and comments data
+      const data = JSON.parse(plant);
+      const parsedComments = JSON.parse(plantComments);
+
+      var plantData = null
+
+      // Fetch additional plant data by name
+      if (data.Identification_Name !== 'Unknown') {
+        var plantData = await plants.getPlantData(data.Identification_Name);
+      }
+      
+      // Render the view with all the data
+      res.render('plant', {
+          title: data.Plant_Name,
+          data: data,
+          comments: parsedComments,
+          plantData: plantData
+      });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
+  }
 });
 
 // Gets page to add plants

@@ -19,7 +19,8 @@ let PlantSchema = new Schema({
         Sun_Exposure: ['Full Sun', 'Partial Shade', 'Full Shade', 'N/a'],
         Fruit_Seeds: ['Fruit Only, Seeds Only, Fruits and Seeds, None'],
         Status: {type: Boolean, required: true, default: false},
-        Img: {type: String}
+        Img: {type: String},
+        Identification_Name: {type: String, required: false, default: 'Unknown'}
     }
 );
 

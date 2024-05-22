@@ -1,4 +1,5 @@
 const comments = require('../controllers/comments')
+const plants = require('../controllers/plants')
 
 exports.init = function(io) {
   io.sockets.on('connection', function (socket) {
@@ -17,6 +18,13 @@ exports.init = function(io) {
         // save chat to database
         comments.saveChat(room, userId, chatText);
 
+      });
+
+      socket.on('update_identification', function (plantid, identification) {
+        // save identification to database
+        plants.updateIdentification(plantid, identification);
+        // Refresh the page
+        io.sockets.emit('refresh');
       });
 
       socket.on('disconnect', function(){

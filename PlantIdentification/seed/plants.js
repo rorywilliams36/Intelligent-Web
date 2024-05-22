@@ -17,7 +17,8 @@ const seedData = [
         Spread: 5,
         Status: false,
         Username: "Ben123",
-        Description: "Has bright blue"
+        Description: "Has bright blue",
+        Identification_Name: 'Bluetips'
     },
     {
         Plant_Name: 'Poison Ivy',
@@ -32,7 +33,8 @@ const seedData = [
         Spread: 14,
         Status: false,
         Username: "Rory123",
-        Description: "Gave me a rash"
+        Description: "Gave me a rash",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: 'Rose',
@@ -48,7 +50,8 @@ const seedData = [
         Spread: 2,
         Status: true,
         Username: "Ben123",
-        Description: "Red and thorny"
+        Description: "Red and thorny",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: 'Yew',
@@ -63,7 +66,8 @@ const seedData = [
         Spread: 100,
         Status: false,
         Username: "Theo999",
-        Description: "Tree with lots of seeds"
+        Description: "Tree with lots of seeds",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: 'Sunflower',
@@ -79,7 +83,8 @@ const seedData = [
         Spread: 5,
         Status: false,
         Username: "Ben123",
-        Description: "Tall yellow flower"
+        Description: "Tall yellow flower",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: 'Cactus',
@@ -95,7 +100,8 @@ const seedData = [
         Spread: 5,
         Status: false,
         Username: "Rory123",
-        Description: "Very prickly/spikey"
+        Description: "Very prickly/spikey",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: 'Apple Tree',
@@ -109,7 +115,8 @@ const seedData = [
         Height: 12,
         Spread: 10,
         Status: true,
-        Username: "Rory123"
+        Username: "Rory123",
+        Identification_Name: 'Unknown'
     },
     {
         Plant_Name: "Bamboo",
@@ -127,6 +134,7 @@ const seedData = [
         Fruit_Seeds: "Seeds Only",
         Status: false,
         Img: "public\\images\\uploads\\1711120905817.jpg",
+        Identification_Name: 'Unknown'
     }
 ];
 
