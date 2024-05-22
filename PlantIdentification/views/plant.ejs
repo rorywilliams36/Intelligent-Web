@@ -76,13 +76,6 @@
                                 <h4 class="card-title">Identification - <%= data.Identification_Name%></h4>
                                 <% if (data.Identification_Name === 'Unknown') { %>
                                     <p>No identification available, please provide one.</p>
-                                    <form onsubmit="return false;" style="width: 100%">
-                                        <p>
-                                            <label for="name">Plant Name: </label>
-                                            <input type="text" id="identify_input" name="identify_input" style="width: 60%">
-                                            <button id="identify_send" onclick="identifyPlant()">Identify</button>
-                                        </p>
-                                    </form>
                                 <% } else if (plantData && plantData.results.bindings.length > 0) { %>
                                         <% plantHeadings = plantData.head.vars %>
                                         <% plantData.results.bindings.forEach(plant => { %>
