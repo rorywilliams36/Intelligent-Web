@@ -1,3 +1,4 @@
+const comments = require('../controllers/comments')
 
 exports.init = function(io) {
   io.sockets.on('connection', function (socket) {
@@ -13,6 +14,9 @@ exports.init = function(io) {
 
       socket.on('chat', function (room, userId, chatText) {
         io.sockets.to(room).emit('chat', room, userId, chatText);
+        // save chat to database
+        comments.saveChat(room, userId, chatText);
+
       });
 
       socket.on('disconnect', function(){

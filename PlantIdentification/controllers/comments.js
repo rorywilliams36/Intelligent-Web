@@ -10,7 +10,7 @@ exports.create = function(data) {
         Plant: data.Plant
     });
 
-    // Return plant instance
+    // Return comment instance
     return comment.save().then(comment => {
         console.log(comment);
         return JSON.stringify(comment);
@@ -40,3 +40,19 @@ exports.getPlantMessages = function(plantId) {
         return null;
     });
 };
+
+exports.saveChat = function(room, userId, chatText) {
+    let comment = new commentModel({
+        Username: userId,
+        Plant: room,
+        Comment: chatText
+    });
+
+    return comment.save().then(comment => {
+        console.log('Saving comment:', comment);
+        return JSON.stringify(comment);
+    }).catch(err => {
+        console.log(err);
+        return null;
+    });
+}
