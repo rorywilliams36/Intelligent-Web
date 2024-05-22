@@ -157,6 +157,7 @@ exports.reverseGeocode = async function(latitude, longitude) {
 // Function to get a plant's location
 exports.sortPlantsByLocation = function(all_plants) {
     return new Promise((resolve, reject) => {
+        
         navigator.geolocation.getCurrentPosition(function(position) {
             let user_lat = position.latitude;
             let user_long = position.longitude;
