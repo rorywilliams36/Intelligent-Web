@@ -17,7 +17,7 @@
                 <%
                     // Displays image from database
                     // If no image is found uses the defaultviews
-                    plant_img = "https://media.istockphoto.com/id/658291850/photo/young-plant-growing-in-sunlight.jpg?s=612x612&w=0&k=20&c=ZH9gmP8dLhwNaWuVbtBz99Fkybg_B0Uanw88QXSdMnY=";
+                    plant_img = "https://as1.ftcdn.net/v2/jpg/01/86/28/18/1000_F_186281897_gzKwaUCOi4fbK5API8a4MafLvML5ElOl.jpg";
                     if (data.Img) { plant_img = '\\' + data.Img; }
                     loc_array = data.Location.split(",");
                     long = loc_array[0].trim();
@@ -87,7 +87,7 @@
                                                 <strong>Common Name</strong> <p><%= plant.commonName.value %></p>
                                             <% } %>
                                             <% if (plantHeadings.includes('abstract')) { %>
-                                                <strong>Abstract</strong><p><%= plant.abstract.value %></p>
+                                                <strong>Abstract</strong><p><%= plant.abstract.value.substring(0,600) %></p>
                                             <% } %>
                                         </div>
                                     <% }); %>
