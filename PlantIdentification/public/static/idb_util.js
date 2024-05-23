@@ -200,7 +200,7 @@ const handleSyncUpgrade = (ev) => {
 }
 
 
-const addSyncPlants = (plants) => {
+const addSyncPlants = (plant) => {
     const syncDataIDB = requestIDB.result;
     const transaction = syncDataIDB.transaction(["sync-plants, sync-comments"], "readwrite");
     const plantStore = transaction.objectStore("sync-plants");
@@ -309,5 +309,7 @@ const deleteSyncCommentFromIDB = (syncDataIDB, id) => {
         console.log("Deleted " + id)
     })
 }
+
+
 
 
