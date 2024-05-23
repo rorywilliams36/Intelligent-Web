@@ -189,49 +189,33 @@ const getAllComments = (dataIDB) => {
         });
     });
 }
-const clearStore = (store) => {
-    const transaction = dataIDB.transaction(["plants", "comments"], "readwrite");
-    const storeIDB = transaction.objectStore(store);
-    const clearRequest = storeIDB.clear();
-
-    return new Promise((resolve, reject) => {
-        clearRequest.addEventListener("success", () => {
-            resolve();
-        });
-
-        clearRequest.addEventListener("error", (event) => {
-            reject(event.target.error);
-        });
-    });
-};
 
     // --------------------SYNCING----------------------
 
 
 function openSyncIDB() {
-return new Promise((resolve, reject) => {
-    const request = indexedDB.open("sync-data", 1);
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open("sync-data");
 
-    request.onerror = function (event) {
-        reject(new Error(`Database error: ${event.target}`));
-    };
+        request.onerror = function (event) {
+            reject(new Error(`Database error: ${event.target}`));
+        };
 
-    request.onupgradeneeded = function (event) {
-        const db = event.target.result;
-        handleSyncUpgrade(db)
-    };
+        request.onupgradeneeded = function (event) {
+            const db = event.target.result;
+            handleSyncUpgrade(db)
+        };
 
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        resolve(db);
-    };
-});
+        request.onsuccess = function (event) {
+            const db = event.target.result;
+            resolve(db);
+        };
+    });
 }
-
 
 // Initalise IndexDB
 const handleSyncUpgrade = (ev) => {
-    const db = ev.target.result
+    const db = ev
     // Create object store for plants
     const plants = db.createObjectStore("sync-plants", { keyPath: "id", autoIncrement: true })
 
@@ -282,24 +266,21 @@ const addSyncPlants = (plant) => {
 }
 
 // Adds comments to indexDB
-const addSyncComments = (syncDataIDB, comments) => {
-    const dataIDB = requestIDB.result;
-    const transaction = dataIDB.transaction(["sync-plants, sync-comments"], "readwrite");
+const addSyncComments = (syncDataIDB, comment) => {
+    const transaction = syncDataIDB.transaction(["sync-comments"], "readwrite");
     const commentStore = transaction.objectStore("sync-comments");
-    for (const comment in comments) {
-        const result = commentStore.add(comment);
-        result.addEventListener("success", () => {
-            console.log("Found " + JSON.stringify(result.result))
-            // Send a sync message to the service worker
-            navigator.serviceWorker.ready.then((sw) => {
-                sw.sync.register("sync-comments")
-            }).then(() => {
-                console.log("Sync registered");
-            }).catch((err) => {
-                console.log("Sync registration failed: " + JSON.stringify(err))
-            })
+    const result = commentStore.add(comment);
+    result.addEventListener("success", () => {
+        console.log("Found " + JSON.stringify(result.result))
+        // Send a sync message to the service worker
+        navigator.serviceWorker.ready.then((sw) => {
+            sw.sync.register("sync-comments")
+        }).then(() => {
+            console.log("Sync registered");
+        }).catch((err) => {
+            console.log("Sync registration failed: " + JSON.stringify(err))
         })
-    }
+    })
 }
 
 // Gets all plants from indexDB
@@ -370,6 +351,7 @@ const deleteSyncCommentFromIDB = (syncDataIDB, id) => {
         console.log("Deleted " + id)
     })
 }
+
 
 
 

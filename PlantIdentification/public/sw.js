@@ -1,3 +1,6 @@
+importScripts('/static/idb_util.js');
+
+
 // Install event
 self.addEventListener('install', (event) => {
     event.waitUntil(async() => {
@@ -10,8 +13,8 @@ self.addEventListener('install', (event) => {
                     '/login', // Cache /login page
                     '/create_plant', // Cache /create_plant page
                     '/submit-plant',
-                    '/javascripts/index.js',
-                    '/javascripts/idb-utility.js'
+                    '/static/index.js',
+                    '/static/idb_util.js'
                 ]);
             })
         }
@@ -55,8 +58,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('sync', event => {
     if (event.tag === 'sync-plant') {
         console.log('Service Worker: Syncing new Plants');
-        openSyncPlantsIDB().then((syncPostDB) => {
-            getAllSyncPlants(syncPostDB).then((syncPlants) => {
+        openSyncDataIDB().then((syncDataDB) => {
+            getAllSyncPlants(syncDataDB).then((syncPlants) => {
                 for (const syncPlant of syncPlants) {
                     console.log('Service Worker: Syncing new Plant: ', syncPlant);
                     // Create a FormData object
@@ -74,7 +77,7 @@ self.addEventListener('sync', event => {
                         },
                     }).then(() => {
                         console.log('Service Worker: Syncing new Todo: ', syncPlant, ' done');
-                        deleteSyncPlantFromIDB(syncPostDB,syncPlant.id);
+                        deleteSyncPlantFromIDB(syncDataDB,syncPlant.id);
                         // Send a notification
                         self.registration.showNotification('Plant Synced', {
                             body: 'Plant synced successfully!',
@@ -86,10 +89,10 @@ self.addEventListener('sync', event => {
             });
         });
     }
-    if (event.tag === 'sync-comment') {
+    if (event.tag === 'sync-comments') {
         console.log('Service Worker: Syncing new Comments');
-        openSyncCommentsIDB().then((syncPostDB) => {
-            getAllSyncComments(syncPostDB).then((syncComments) => {
+        openSyncIDB().then((syncDataDB) => {
+            getAllSyncComments(syncDataDB).then((syncComments) => {
                 for (const syncComment of syncComments) {
                     console.log('Service Worker: Syncing new Comment: ', syncComment);
                     // Create a FormData object
@@ -107,7 +110,7 @@ self.addEventListener('sync', event => {
                         },
                     }).then(() => {
                         console.log('Service Worker: Syncing new Todo: ', syncComment, ' done');
-                        deleteSyncCommentFromIDB(syncPostDB,syncComment.id);
+                        deleteSyncCommentFromIDB(syncDataDB,syncComment.id);
                         // Send a notification
                         self.registration.showNotification('Comment Synced', {
                             body: 'Comment synced successfully!',

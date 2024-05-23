@@ -75,8 +75,10 @@ window.onload= function() {
         console.log("Offline mode")
         openIDB().then((db) => {
             getAllPlants(db).then((plants) => {
-                console.log("Offline")
                 console.log(plants)
+            });
+            getAllComments(db).then((comments) => {
+                console.log(comments)
             });
         });
     }
