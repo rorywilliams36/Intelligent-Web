@@ -44,7 +44,7 @@ const seedData = [
     {
         _id: '60f3b3b3b3b3b3b3b3b3b3b3',
         Plant_Name: 'Sunflower',
-        Date_Seen: new Date('08-03-2024'),
+        Date_Seen: new Date('05-03-2024'),
         Location: '39.876019, -117.224121', // Nevada
         Location_Name: 'Nevada, USA',
         Leaves: true,
