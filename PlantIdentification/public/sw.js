@@ -4,6 +4,7 @@ self.addEventListener('install', (event) => {
         try {
             caches.open('my-cache').then((cache) => {
                 return cache.addAll([
+                    '/',
                     '/images/favicon.ico',
                     '/all_plants', // Cache /all_plants page
                     '/login', // Cache /login page
@@ -65,7 +66,7 @@ self.addEventListener('sync', event => {
                     formData.append("data", syncPlant);
 
                     // Fetch with FormData instead of JSON
-                    fetch('http://localhost:3000/add_plant', {
+                    fetch('http://localhost:3000/submit-plant', {
                         method: 'POST',
                         body: formData,
                         headers: {
