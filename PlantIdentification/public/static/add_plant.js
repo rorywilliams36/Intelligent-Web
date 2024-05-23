@@ -13,8 +13,9 @@ const addNewPlant = () => {
         });
 }
 
+
 window.onload = function () {
     // Add event listeners to buttons
-    const add_btn = document.getElementById("add_btn")
-    add_btn.addEventListener("click", addNewTodoButtonEventListener)
+    const create_btn = document.getElementById("create-plant")
+    create_btn.addEventListener("click", addNewPlant)
 }

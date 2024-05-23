@@ -71,6 +71,56 @@ const addPlants = (plants) => {
     }
 }
 
+const addNewPlantsIDB = (dataIDB, plants) => {
+    return new Promise((resolve, reject) => {
+        const transaction = dataIDB.transaction(["plants"], "readwrite");
+        const plantStore = transaction.objectStore("plants");
+
+        const addPromises = plants.map(plant => {
+            return new Promise((resolveAdd, rejectAdd) => {
+                const addRequest = plantStore.add(plant);
+                addRequest.addEventListener("success", () => {
+                    const getRequest = plantStore.get(addRequest.result);
+                    getRequest.addEventListener("success", () => {
+                        console.log("Found " + JSON.stringify(getRequest.result));
+                        // Assume insertTodoInList is defined elsewhere
+                        resolveAdd(); // Resolve the add promise
+                    });
+                    getRequest.addEventListener("error", (event) => {
+                        rejectAdd(event.target.error); // Reject the add promise if there's an error
+                    });
+                });
+                addRequest.addEventListener("error", (event) => {
+                    rejectAdd(event.target.error); // Reject the add promise if there's an error
+                });
+            });
+        });
+
+        // Resolve the main promise when all add operations are completed
+        Promise.all(addPromises).then(() => {
+            resolve();
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+};
+
+const clearPlants = (dataIDB) => {
+    return new Promise((resolve, reject) => {
+        const transaction = dataIDB.transaction(['plants'], "readwrite");
+        const plantStore = transaction.objectStore("plants");
+        const result = plantStore.clear();
+        result.addEventListener("success", () => {
+            console.log("Plant indexddb cleared");
+            resolve()
+        })
+        result.addEventListener("error", (event) => {
+            console.log('Error occured clearing Plants indexddb');
+            reject(event.target.error);
+        })
+    })
+}
+
 // Adds comments to indexDB
 const addComments = (comments) => {
     const dataIDB = requestIDB.result;

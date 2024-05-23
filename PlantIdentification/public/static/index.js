@@ -1,9 +1,4 @@
 
-
-
-
-
-
 window.onload= function() {
 // Register the service worker
     if ('serviceWorker' in navigator) {
@@ -42,17 +37,24 @@ window.onload= function() {
         }
     }
 
+    // When Online
     if (navigator.onLine) {
-        fetch('http:////localhost:3000/all_plants')
+        console.log('ONLINE');
+
+        // First update indexddb plant store from mongoDB
+        fetch('http:////localhost:3000/every_plant')
             .then(function (res) {
                 return res.json();
             }).then(function (newPlants) {
+                console.log('New', newPlants)
             openIDB().then((db) => {
                 console.log('OPEN DATABASE')
-                const transaction = db.transaction(["plants, comments"], "readwrite");
-                const plantStore = transaction.objectStore("plants");
-                clearStore(plantStore);
-            })
+                clearPlants(db).then(() => {
+                    addNewPlantsIDB(db, newPlants).then(() => {
+                        console.log('Plants added')
+                    });
+                });
+            });
         });
     }
 

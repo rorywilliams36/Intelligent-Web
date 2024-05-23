@@ -82,6 +82,16 @@ router.get('/all_plants', function(req, res, next) {
   });
 });
 
+router.get('/every_plant', function(req, res, next) {
+    let results = plants.getAll().then(results => {
+        console.log(results);
+        return res.status(200).send(results)
+    }).catch(err => {
+        console.log(err);
+        return res.status(500).send(err);
+    });
+})
+
 /* GET nickname page. */
 router.get('/login', function(req, res, next) {
   res.render('nickname', { title: 'Sign In' });
@@ -132,7 +142,6 @@ router.get('/create_plant', function(req,res,next) {
 // For plant form submission
 router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   const plantData = req.body;
-
   // Tries to get filepath from the request
   let filepath;
   try {
@@ -154,7 +163,6 @@ router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
     console.error(error);
     res.status(500).send('Error in Submission');
     res.redirect('/');
-
   });
   res.redirect('/');
 });
