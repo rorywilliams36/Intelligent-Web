@@ -212,10 +212,20 @@ async function fetchPlantData(plantName) {
     // Encode the query 
     const url = `${endpointUrl}?query=${encodeURIComponent(query)}&format=json`;
     
+    const timeout = 2000; // Timeout in milliseconds (2 seconds)
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+    
     try {
         // Fetch data from the SPARQL endpoint
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            signal: controller.signal
+        });
         
+        clearTimeout(timeoutId);
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
