@@ -73,25 +73,26 @@
                         <!-- DBPedia Identification -->
                         <div class="card mt-3 mb-3">
                             <div class="card-body" style="background: #f0ffee;">
-                                <h4 class="card-title">Identification - <%= data.Identification_Name%></h4>
                                 <% if (data.Identification_Name === 'Unknown') { %>
-                                    <p>No identification available, please provide one.</p>
+                                    <h4 class="card-title">Identification - Unknown</h4>
                                 <% } else if (plantData && plantData.results.bindings.length > 0) { %>
-                                        <% plantHeadings = plantData.head.vars %>
-                                        <% plantData.results.bindings.forEach(plant => { %>
-                                            <div>
-                                                <% if (plantHeadings.includes('thumbnail')) { %>
-                                                    <strong>Image</strong><p><img src="<%= plant.thumbnail.value %>" alt="Plant Image" class="img-thumbnail" style="width: 100px; height: 100px;"></p>
-                                                <% } %>
-                                                <% if (plantHeadings.includes('commonName')) { %>
-                                                    <strong>Common Name</strong> <p><%= plant.commonName.value %></p>
-                                                <% } %>
-                                                <% if (plantHeadings.includes('abstract')) { %>
-                                                    <strong>Abstract</strong><p><%= plant.abstract.value %></p>
-                                                <% } %>
-                                            </div>
-                                        <% }); %>
+                                    <% plantHeadings = plantData.head.vars %>
+                                    <h4 class="card-title">Identification - Completed</h4>
+                                    <% plantData.results.bindings.forEach(plant => { %>
+                                        <div>
+                                            <% if (plantHeadings.includes('thumbnail')) { %>
+                                                <strong>Image</strong><p><img src="<%= plant.thumbnail.value %>" alt="Plant Image" class="img-thumbnail" style="width: 100px; height: 100px;"></p>
+                                            <% } %>
+                                            <% if (plantHeadings.includes('commonName')) { %>
+                                                <strong>Common Name</strong> <p><%= plant.commonName.value %></p>
+                                            <% } %>
+                                            <% if (plantHeadings.includes('abstract')) { %>
+                                                <strong>Abstract</strong><p><%= plant.abstract.value %></p>
+                                            <% } %>
+                                        </div>
+                                    <% }); %>
                                 <% } else { %>
+                                    <h4 class="card-title">Identification - Unknown</h4>
                                     <p>Current identification "<%= data.Identification_Name %>" does not work, please provide a new one.</p>
                 
                                 <% } %>
