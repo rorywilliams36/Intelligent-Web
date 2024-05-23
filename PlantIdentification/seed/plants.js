@@ -4,6 +4,26 @@ const plants = require('../models/plants');
 
 const seedData = [
     {
+        _id: '60f3b3b3b3b3b3b3b3b3b3b2',
+        Plant_Name: 'Cactus',
+        Date_Seen: new Date('06-15-2023'),
+        Location: '39.876019, -117.224121',
+        Location_Name: 'Nevada, USA',
+        Leaves: false,
+        Flowers: true,
+        Flower_Colour: 'Red',
+        Sun_Exposure: 'Full Sun',
+        Fruit_Seeds: 'Seeds Only',
+        Height: 7,
+        Spread: 5,
+        Status: false,
+        Username: "Rory123",
+        Description: "Very prickly/spikey",
+        Identification_Name: 'Cactus',
+        Img: "public/images/uploads/592107912.jpg"
+    },
+    {
+        _id: '60f3b3b3b3b3b3b3b3b3b3b0',
         Plant_Name: "Purple Daisy",
         Username: "Rory123",
         Date_Seen: new Date("2024-03-12T00:00:00.000Z"),
@@ -41,25 +61,7 @@ const seedData = [
         Img: "public/images/uploads/4257912035.jpg"
     },
     {
-        _id: '60f3b3b3b3b3b3b3b3b3b3b2',
-        Plant_Name: 'Cactus',
-        Date_Seen: new Date('06-15-2023'),
-        Location: '39.876019, -117.224121',
-        Location_Name: 'Nevada, USA',
-        Leaves: false,
-        Flowers: true,
-        Flower_Colour: 'Red',
-        Sun_Exposure: 'Full Sun',
-        Fruit_Seeds: 'Seeds Only',
-        Height: 7,
-        Spread: 5,
-        Status: false,
-        Username: "Rory123",
-        Description: "Very prickly/spikey",
-        Identification_Name: 'Cactus',
-        Img: "public/images/uploads/592107912.jpg"
-    },
-    {
+        _id: '60f3b3b3b3b3b3b3b3b3b3b1',
         Plant_Name: 'Red Roses',
         Date_Seen: new Date('06-11-2023'),
         Location: '53.3827625, -1.4883414', // Sheffield
@@ -77,6 +79,7 @@ const seedData = [
         Img: "public/images/uploads/2157901257.jpg"
     },
     {
+        _id: '60f3b3b3b3b3b3b3b3b3b3b4',
         Plant_Name: 'Yew',
         Date_Seen: new Date('12-15-2023'),
         Location: '53.3814, -1.4746', // Sheffield City Centre

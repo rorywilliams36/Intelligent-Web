@@ -5,14 +5,38 @@ const seedData = [
     {
         Username: "Rory123",
         Date: "2023-06-11T00:00:00.000Z",
-        Plant: "66338f7c9948332bcc94510e",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b3",
         Comment: "This is a really nice looking Plant",
     },
     {
         Username: "Ben456",
         Date: "2023-06-12T00:00:00.000Z",
-        Plant: "66338f7c9948332bcc94510e",
-        Comment: "This is probably Poison Ivy",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b3",
+        Comment: "I love sunflowers!!",
+    },
+    {
+        Username: "PlantLover123",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b2",
+        Comment: "I love this plant",
+    },
+    {
+        Username: "Tommy13253",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b2",
+        Comment: "This plant is boring",
+    },
+    {
+        Username: "Ben456",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b2",
+        Comment: "Owch, spikey!",
+    },
+    {
+        Username: "Tommy13253",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b1",
+        Comment: "These look amazing!",
     }
 ]
 
