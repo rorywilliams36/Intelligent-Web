@@ -51,26 +51,6 @@ const handleUpgrade = (ev) => {
 }
 
 
-const addPlants = (plants) => {
-    const dataIDB = requestIDB.result;
-    const transaction = dataIDB.transaction(["plants, comments"], "readwrite");
-    const plantStore = transaction.objectStore("plants");
-    for (const plant in plants) {
-        const result = plantStore.add(plant);
-        result.addEventListener("success", () => {
-            console.log("Found " + JSON.stringify(result.result))
-            // Send a sync message to the service worker
-            navigator.serviceWorker.ready.then((sw) => {
-                sw.sync.register("sync-plant")
-            }).then(() => {
-                console.log("Sync registered");
-            }).catch((err) => {
-                console.log("Sync registration failed: " + JSON.stringify(err))
-            })
-        })
-    }
-}
-
 const addNewPlantsIDB = (dataIDB, plants) => {
     return new Promise((resolve, reject) => {
         const transaction = dataIDB.transaction(["plants"], "readwrite");
@@ -122,24 +102,55 @@ const clearPlants = (dataIDB) => {
 }
 
 // Adds comments to indexDB
-const addComments = (comments) => {
-    const dataIDB = requestIDB.result;
-    const transaction = dataIDB.transaction(["plants, comments"], "readwrite");
-    const commentStore = transaction.objectStore("comments");
-    for (const comment in comments) {
-        const result = commentStore.add(comment);
+const addNewCommentsIDB = (dataIDB, comments) => {
+    return new Promise((resolve, reject) => {
+        const transaction = dataIDB.transaction(["comments"], "readwrite");
+        const commentStore = transaction.objectStore("comments");
+
+        const addPromises = comments.map(comment => {
+            return new Promise((resolveAdd, rejectAdd) => {
+                const addRequest = commentStore.add(comment);
+                addRequest.addEventListener("success", () => {
+                    const getRequest = commentStore.get(addRequest.result);
+                    getRequest.addEventListener("success", () => {
+                        console.log("Found " + JSON.stringify(getRequest.result));
+                        // Assume insertTodoInList is defined elsewhere
+                        resolveAdd(); // Resolve the add promise
+                    });
+                    getRequest.addEventListener("error", (event) => {
+                        rejectAdd(event.target.error); // Reject the add promise if there's an error
+                    });
+                });
+                addRequest.addEventListener("error", (event) => {
+                    rejectAdd(event.target.error); // Reject the add promise if there's an error
+                });
+            });
+        });
+
+        // Resolve the main promise when all add operations are completed
+        Promise.all(addPromises).then(() => {
+            resolve();
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+};
+
+// Clears the Comment Store
+const clearComments = (dataIDB) => {
+    return new Promise((resolve, reject) => {
+        const transaction = dataIDB.transaction(["comments"], "readwrite");
+        const commentStore = transaction.objectStore("comments");
+        const result = commentStore.clear();
         result.addEventListener("success", () => {
-            console.log("Found " + JSON.stringify(result.result))
-            // Send a sync message to the service worker
-            navigator.serviceWorker.ready.then((sw) => {
-                sw.sync.register("sync-comment")
-            }).then(() => {
-                console.log("Sync registered");
-            }).catch((err) => {
-                console.log("Sync registration failed: " + JSON.stringify(err))
-            })
+            console.log("Comment indexddb cleared");
+            resolve()
         })
-    }
+        result.addEventListener("error", (event) => {
+            console.log('Error occured clearing Comments indexddb');
+            reject(event.target.error);
+        })
+    })
 }
 
 // Gets all plants from indexDB

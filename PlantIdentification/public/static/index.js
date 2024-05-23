@@ -46,12 +46,25 @@ window.onload= function() {
             .then(function (res) {
                 return res.json();
             }).then(function (newPlants) {
-                console.log('New', newPlants)
             openIDB().then((db) => {
                 console.log('OPEN DATABASE')
                 clearPlants(db).then(() => {
                     addNewPlantsIDB(db, newPlants).then(() => {
                         console.log('Plants added')
+                    });
+                });
+            });
+        });
+
+        fetch('http:////localhost:3000/every_comment')
+            .then(function (res) {
+                return res.json();
+            }).then(function (newComments) {
+            openIDB().then((db) => {
+                console.log('OPEN DATABASE')
+                clearComments(db).then(() => {
+                    addNewCommentsIDB(db, newComments).then(() => {
+                        console.log('Comments added')
                     });
                 });
             });
@@ -62,7 +75,7 @@ window.onload= function() {
         console.log("Offline mode")
         openIDB().then((db) => {
             getAllPlants(db).then((plants) => {
-                getAllComments(db).then(comments)
+                console.log("Offline")
                 console.log(plants)
             });
         });

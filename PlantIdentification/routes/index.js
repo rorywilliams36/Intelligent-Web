@@ -82,8 +82,22 @@ router.get('/all_plants', function(req, res, next) {
   });
 });
 
+// Gets all plants without loading page
+// Used for when window reload to update indexddb
 router.get('/every_plant', function(req, res, next) {
     let results = plants.getAll().then(results => {
+        console.log(results);
+        return res.status(200).send(results)
+    }).catch(err => {
+        console.log(err);
+        return res.status(500).send(err);
+    });
+})
+
+// Gets all comments without loading page
+// Used for when window reload to update indexddb
+router.get('/every_comment', function(req, res, next) {
+    let results = comments.getAll().then(results => {
         console.log(results);
         return res.status(200).send(results)
     }).catch(err => {
