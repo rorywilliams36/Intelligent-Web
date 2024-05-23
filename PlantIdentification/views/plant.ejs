@@ -73,20 +73,42 @@
                         <!-- DBPedia Identification -->
                         <div class="card mt-3 mb-3">
                             <div class="card-body" style="background: #f0ffee;">
-                                <h4 class="card-title">Identification</h4>
-                                <h6 class="text-muted card-subtitle mb-2">Status: Unknown</h6>
-                                <p class="card-text">No information could be found for this plant.</p><a class="card-link" href="#">Link</a>
+                                <h4 class="card-title">Identification - <%= data.Identification_Name%></h4>
+                                <% if (data.Identification_Name === 'Unknown') { %>
+                                    <p>No identification available, please provide one.</p>
+                                <% } else if (plantData && plantData.results.bindings.length > 0) { %>
+                                        <% plantHeadings = plantData.head.vars %>
+                                        <% plantData.results.bindings.forEach(plant => { %>
+                                            <div>
+                                                <% if (plantHeadings.includes('thumbnail')) { %>
+                                                    <strong>Image</strong><p><img src="<%= plant.thumbnail.value %>" alt="Plant Image" class="img-thumbnail" style="width: 100px; height: 100px;"></p>
+                                                <% } %>
+                                                <% if (plantHeadings.includes('commonName')) { %>
+                                                    <strong>Common Name</strong> <p><%= plant.commonName.value %></p>
+                                                <% } %>
+                                                <% if (plantHeadings.includes('abstract')) { %>
+                                                    <strong>Abstract</strong><p><%= plant.abstract.value %></p>
+                                                <% } %>
+                                            </div>
+                                        <% }); %>
+                                <% } else { %>
+                                    <p>Current identification "<%= data.Identification_Name %>" does not work, please provide a new one.</p>
+                
+                                <% } %>
+                                <form onsubmit="return false;" style="width: 100%">
+                                    <p>
+                                        <label for="name">Plant Name: </label>
+                                        <input type="text" id="identify_input" name="identify_input" style="width: 60%">
+                                        <button id="identify_send" onclick="tryNewIdentification('<%= data._id %>')">Identify</button>
+                                    </p>
+                                </form>
                             </div>
+                            
                         </div>
                         <div class="row mb-3">
                             <h3>Comments</h3>
                             <% if (comments.length === 0) { %>
-                                        <div class="mx-auto">
-                                            <div class="text-center">
-                                                <h3>No Comments Found</h3>
-                                                
-                                            </div>
-                                        </div>
+                                <p>No comments yet.</p>
                                     <% }
                                     else {
                                     comments.forEach(comment => { %> 

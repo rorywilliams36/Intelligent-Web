@@ -185,3 +185,74 @@ exports.sortPlantsByLocation = function(all_plants) {
     });
 };
 
+// Identify a plant
+async function fetchPlantData(plantName) {
+    const endpointUrl = 'https://dbpedia.org/sparql';
+    
+    // SPARQL query to fetch plant data by name
+    const query = `
+    PREFIX dbo: <http://dbpedia.org/ontology/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX dbp: <http://dbpedia.org/property/>
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+    SELECT ?plant ?commonName ?abstract ?thumbnail ?label
+    WHERE {
+    ?plant rdfs:label ?commonName ;
+            dbo:abstract ?abstract ;
+            dbo:thumbnail ?thumbnail ;
+            rdfs:label ?label .
+
+    FILTER (LANG(?commonName) = "en" && LANG(?abstract) = "en")
+    FILTER (CONTAINS(LCASE(?commonName), "${plantName.toLowerCase()}"))
+    }
+    LIMIT 1
+    `;
+    
+    // Encode the query 
+    const url = `${endpointUrl}?query=${encodeURIComponent(query)}&format=json`;
+    
+    try {
+        // Fetch data from the SPARQL endpoint
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        // Parse the JSON response
+        const data = await response.json();
+        
+        // Process the data (this example just logs it)
+        console.log(data);
+        
+        return data;
+    } catch (error) {
+        console.error('Error fetching plant data:', error);
+        return null;
+    }
+}
+
+exports.getPlantData = async (plantName) => {
+    try {
+        console.log('Fetching plant data for:', plantName);
+        return await fetchPlantData(plantName);
+    } catch (error) {
+        console.error('Error fetching plant data:', error);
+        throw error;
+    }
+};
+
+
+// Function to update a plant's identification name
+exports.updateIdentification = async function(plantId, identificationName) {
+    try {
+        const plant = await plantModel.findById(plantId);
+        plant.Identification_Name = identificationName;
+        await plant.save();
+        return JSON.stringify(plant);
+    } catch (error) {
+        console.error('Error updating plant identification:', error);
+        return null;
+    }
+};

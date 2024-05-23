@@ -30,6 +30,11 @@ function init() {
         writeOnHistory('<b>' + who + ':</b> ' + chatText);
     });
 
+    // called when the server wants to refresh the page
+    socket.on('refresh', function () {
+        location.reload();
+    });
+
 }
 
 /**
@@ -104,4 +109,10 @@ function hideLoginInterface(room, userId) {
     document.getElementById('initial_form').style.display = 'none';
     document.getElementById('chat_interface').style.display = 'block';
     document.getElementById('in_room').innerHTML= ' '+room;
+}
+
+function tryNewIdentification(plantid) {
+    let identification = document.getElementById('identify_input').value;
+    console.log('tryNewIdentification', plantid, identification)
+    socket.emit('update_identification', plantid, identification);
 }
