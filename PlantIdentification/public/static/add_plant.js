@@ -1,12 +1,17 @@
 const addNewPlant = () => {
-    const txt_val = document.getElementById("submit-value").value
-    openSyncPlantsIDB().then((db) => {
-        addSyncPlant(db, txt_val);
+    console.log('HHHHHHHHHHHHHHHH')
+    console.log(document.forms[formName])
+
+    var formData = new FormData(formEl);
+
+    var name = formData.get('name');
+    openSyncIDB().then((db) => {
+        addSyncPlants(db, plant);
     });
     navigator.serviceWorker.ready
         .then(function (serviceWorkerRegistration) {
-            serviceWorkerRegistration.showNotification("Todo App",
-                {body: "Todo added! - " + txt_val})
+            serviceWorkerRegistration.showNotification("Plant App",
+                {body: "Plant added!"})
                 .then(r =>
                     console.log(r)
                 );
@@ -16,6 +21,10 @@ const addNewPlant = () => {
 
 window.onload = function () {
     // Add event listeners to buttons
-    const create_btn = document.getElementById("create-plant")
-    create_btn.addEventListener("click", addNewPlant)
+    window.addEventListener("DOMContentLoaded", (event) => {
+        const el = document.getElementById('create-plant');
+        if (el) {
+            el.addEventListener('click', addNewPlant);
+        }
+    });
 }

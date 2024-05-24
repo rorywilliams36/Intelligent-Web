@@ -245,24 +245,21 @@ const handleSyncUpgrade = (ev) => {
 }
 
 
-const addSyncPlants = (plant) => {
-    const syncDataIDB = requestIDB.result;
+const addSyncPlants = (syncDataIDB, plant) => {
     const transaction = syncDataIDB.transaction(["sync-plants, sync-comments"], "readwrite");
     const plantStore = transaction.objectStore("sync-plants");
-    for (const plant in plants) {
-        const result = plantStore.add(plant);
-        result.addEventListener("success", () => {
-            console.log("Found " + JSON.stringify(result.result))
-            // Send a sync message to the service worker
-            navigator.serviceWorker.ready.then((sw) => {
-                sw.sync.register("sync-plant")
-            }).then(() => {
-                console.log("Sync registered");
-            }).catch((err) => {
-                console.log("Sync registration failed: " + JSON.stringify(err))
-            })
-        })
-    }
+    const result = plantStore.add(plant);
+    result.addEventListener("success", () => {
+        console.log("Found " + JSON.stringify(result.result))
+        // Send a sync message to the service worker
+        navigator.serviceWorker.ready.then((sw) => {
+            sw.sync.register("sync-plant")
+        }).then(() => {
+            console.log("Sync registered");
+        }).catch((err) => {
+            console.log("Sync registration failed: " + JSON.stringify(err))
+        });
+    });
 }
 
 // Adds comments to indexDB
@@ -336,7 +333,7 @@ const clearSyncStore = (store, syncDataIDB) => {
 };
 
 const deleteSyncPlantFromIDB = (syncDataIDB, id) => {
-    const transaction = syncDataIDB.transaction(["sync-plants", "sync-comments"], "readwrite")
+    const transaction = syncDataIDB.transaction(["sync-plants"], "readwrite")
     const plantStore = transaction.objectStore("sync-plants")
     const deleteRequest = plantStore.delete(id)
     deleteRequest.addEventListener("success", () => {
@@ -344,7 +341,7 @@ const deleteSyncPlantFromIDB = (syncDataIDB, id) => {
     })
 }
 const deleteSyncCommentFromIDB = (syncDataIDB, id) => {
-    const transaction = syncDataIDB.transaction(["sync-plants", "sync-comments"], "readwrite")
+    const transaction = syncDataIDB.transaction(["sync-comments"], "readwrite")
     const commentStore = transaction.objectStore("sync-comments")
     const deleteRequest = commentStore.delete(id)
     deleteRequest.addEventListener("success", () => {
