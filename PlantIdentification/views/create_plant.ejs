@@ -87,14 +87,8 @@
                 <label for="image">Choose an image (Optional)</label><br><br>
                 <input type="file" id="img" name="Img" accept="image/*">
             </div>
-            <%# <div class="form-check">
-                <label class="form-check-label" for="Status">
-                <input class="form-check-input" type="checkbox" name="Status" id="Status">
-                    Plant Identified?
-                </label>
-            </div> %>
             <div class="container">
-                <button onsubmit="temp" id="create-plant" type="submit" class="btn btn-primary w-100" >Submit Plant</button>
+                <button id="create-plant" type="submit" class="btn btn-primary" >Submit Plant</button>
             </div>
             <br>
         </form>
@@ -140,11 +134,4 @@
             return null;
         }
     }
-</script>
-<script>
-    function temp() {
-        console.log('TEMMMMMMMMMMMMMMMMPPPPPPPPPPPPPPPPP')
-        var queryString = $('#PlantCreation').serialize();
-    }
-
 </script>
