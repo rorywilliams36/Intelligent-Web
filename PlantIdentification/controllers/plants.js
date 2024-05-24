@@ -17,6 +17,7 @@ exports.create = async function(data, filepath) {
         const latitude = plant.Location.split(',')[0];
         const longitude = plant.Location.split(',')[1];
         plant.Location_Name = await this.reverseGeocode(latitude, longitude);
+        plant.Status = false;
         console.log(plant.Location_Name);
         
         // Save the plant, including the Location_Name, to the database

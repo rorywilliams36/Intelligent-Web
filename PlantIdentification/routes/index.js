@@ -4,6 +4,7 @@ var multer = require('multer');
 
 const plants = require('../controllers/plants')
 const comments = require('../controllers/comments')
+const store = require('../globalStore');
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -179,6 +180,25 @@ router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
     res.redirect('/');
   });
   res.redirect('/');
+});
+
+router.post('/set-username', (req, res) => {
+  const { username } = req.body;
+  if (username) {
+      store.username = username;
+      res.redirect('/all_plants');//res.send(`Username ${username} stored globally.`);
+  } else {
+      res.status(400).send('Username is required.');
+  }
+});
+
+// Route to get the username
+router.get('/get-username', (req, res) => {
+  if (store.username) {
+      res.send(`${store.username}`);
+  } else {
+      res.status(404).send('Unknown');
+  }
 });
 
 module.exports = router;
