@@ -53,10 +53,7 @@ router.get('/all_plants', function(req, res, next) {
     console.log('Should I sort?', req.query.sort);
 
     if (req.query.sort) {
-      console.log('Applying sort...');
-      // Call sortPlants from plantsController
-      console.log('Sorting by:', req.query.sort);
-      // console.log('before', data)
+      // Find out if the user wants to sort by location
       if (req.query.sort != 'location') {
         data = plants.sortPlants(data, req.query.sort);
         res.render('all_plants', { title: 'All Plants', data: data });
@@ -154,7 +151,7 @@ router.get('/create_plant', function(req,res,next) {
   res.render('create_plant', {title: 'Add Plant'})
 });
 
-// For plant form submission
+// POST Route for plant form submission
 router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   const plantData = req.body;
   // Tries to get filepath from the request
@@ -182,6 +179,7 @@ router.post('/submit-plant', upload.single('Img'), function(req, res, next) {
   res.redirect('/');
 });
 
+// POST Route to set the username
 router.post('/set-username', (req, res) => {
   const { username } = req.body;
   if (username) {
@@ -197,7 +195,7 @@ router.get('/get-username', (req, res) => {
   if (store.username) {
       res.send(`${store.username}`);
   } else {
-      res.status(404).send('Unknown');
+      res.status(404).send('Sign In');
   }
 });
 

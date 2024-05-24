@@ -54,7 +54,7 @@ window.onload= function() {
                 });
             });
         });
-
+        // Then update indexddb comment store from mongoDB
         fetch('http:////localhost:3000/every_comment')
             .then(function (res) {
                 return res.json();
@@ -71,6 +71,7 @@ window.onload= function() {
     }
 
     else {
+        // Offline mode
         console.log("Offline mode")
         openIDB().then((db) => {
             getAllPlants(db).then((plants) => {

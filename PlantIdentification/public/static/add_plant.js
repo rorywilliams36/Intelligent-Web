@@ -1,3 +1,8 @@
+/**
+    * Function to add a new plant to the database
+    * @param {Event} event - The event object
+    * @param {HTMLFormElement} form - The form element
+*/
 const addNewPlant = (event,form) => {
 
     var formData = new FormData(form);
@@ -18,7 +23,6 @@ const addNewPlant = (event,form) => {
                 );
         });
 }
-
 
 window.onload = function () {
     console.log('LOAD')

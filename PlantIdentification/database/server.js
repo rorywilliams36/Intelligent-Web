@@ -5,6 +5,7 @@ let connection;
 
 mongoose.Promise = global.Promise;
 
+// Connect to MongoDB
 mongoose.connect(mongoDB).then(result => {
     connection = result.connection;
     console.log('Connection Successful');

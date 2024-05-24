@@ -10,7 +10,6 @@ It is recommended you run the code in this order:
 2. Run `npm install` to install all required packages
 3. Run `npm start` to run the program (defaults to `locahost:3000`)
 
-
 ## Important Pages
 
 - Use `/login` to sign in, allowing you to comment/submit plants

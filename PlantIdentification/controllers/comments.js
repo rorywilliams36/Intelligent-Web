@@ -32,6 +32,7 @@ exports.getAll = function() {
     });
 };
 
+// Function to retrieve all comments for a specific plant
 exports.getPlantMessages = function(plantId) {
     return commentModel.find({Plant: plantId}).then(comments => {
         return JSON.stringify(comments);
@@ -41,6 +42,7 @@ exports.getPlantMessages = function(plantId) {
     });
 };
 
+// Function to save a chat message
 exports.saveChat = function(room, userId, chatText) {
     let comment = new commentModel({
         Username: userId,

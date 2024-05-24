@@ -244,6 +244,7 @@ async function fetchPlantData(plantName) {
     }
 }
 
+// Function to get plant data by name
 exports.getPlantData = async (plantName) => {
     try {
         console.log('Fetching plant data for:', plantName);
@@ -260,7 +261,9 @@ exports.updateIdentification = async function(plantId, identificationName) {
     try {
         const plant = await plantModel.findById(plantId);
         plant.Identification_Name = identificationName;
+        plant.Status = true;
         await plant.save();
+        
         return JSON.stringify(plant);
     } catch (error) {
         console.error('Error updating plant identification:', error);

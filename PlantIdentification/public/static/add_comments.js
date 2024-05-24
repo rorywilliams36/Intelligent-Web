@@ -1,3 +1,7 @@
+/**
+    * Function to add a new comment to the database
+    * @param {string} plant_id - The ID of the plant the comment is associated with
+ */
 function addNewComment(plant_id){
     console.log('New Comment')
     const chat_msg = document.getElementById("chat_input").value
