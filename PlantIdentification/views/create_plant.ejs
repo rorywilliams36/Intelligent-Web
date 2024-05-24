@@ -9,8 +9,10 @@
     </header>
 
     <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post" enctype="multipart/form-data">
+    <script src="https://malsup.github.io/jquery.form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <form class="card col-md-6 mb-5 mx-auto" action="/submit-plant" method="post" enctype="multipart/form-data" id="PlantCreation">
             <div class="form-row">
                 <div class="form-group">
                     <label for="Plant_Name"></label>
@@ -93,8 +95,9 @@
                     Status
                 </label>
             </div>
-            <button id="create-plant" type="submit" class="btn btn-primary" >Submit Plant</button>
+            <button onsubmit="temp" id="create-plant" type="submit" class="btn btn-primary" >Submit Plant</button>
         </form>
+
     </body>
 
     <footer>
@@ -136,4 +139,11 @@
             return null;
         }
     }
+</script>
+<script>
+    function temp() {
+        console.log('TEMMMMMMMMMMMMMMMMPPPPPPPPPPPPPPPPP')
+        var queryString = $('#PlantCreation').serialize();
+    }
+
 </script>

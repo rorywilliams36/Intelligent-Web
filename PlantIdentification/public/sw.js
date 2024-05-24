@@ -58,7 +58,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('sync', event => {
     if (event.tag === 'sync-plant') {
         console.log('Service Worker: Syncing new Plants');
-        openSyncDataIDB().then((syncDataDB) => {
+        openSyncIDB().then((syncDataDB) => {
             getAllSyncPlants(syncDataDB).then((syncPlants) => {
                 for (const syncPlant of syncPlants) {
                     console.log('Service Worker: Syncing new Plant: ', syncPlant);
