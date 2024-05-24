@@ -266,19 +266,43 @@ const addSyncPlants = (syncDataIDB, plant) => {
 const addSyncComments = (syncDataIDB, comment) => {
     const transaction = syncDataIDB.transaction(["sync-comments"], "readwrite");
     const commentStore = transaction.objectStore("sync-comments");
-    const result = commentStore.add(comment);
-    result.addEventListener("success", () => {
-        console.log("Found " + JSON.stringify(result.result))
-        // Send a sync message to the service worker
-        navigator.serviceWorker.ready.then((sw) => {
-            sw.sync.register("sync-comments")
-        }).then(() => {
-            console.log("Sync registered");
-        }).catch((err) => {
-            console.log("Sync registration failed: " + JSON.stringify(err))
+    const addResult = commentStore.add(comment);
+
+    addResult.addEventListener("success", () => {
+        console.log("Found " + JSON.stringify(addResult.result))
+        const getRequest = commentStore.get(addResult.result)
+        getRequest.addEventListener("success", () => {
+            // Send a sync message to the service worker
+            navigator.serviceWorker.ready.then((sw) => {
+                sw.sync.register("sync-comments")
+            }).then(() => {
+                console.log("Sync registered");
+            }).catch((err) => {
+                console.log("Sync registration failed: " + JSON.stringify(err))
+        })
         })
     })
 }
+// const transaction = syncTodoIDB.transaction(["sync-todos"], "readwrite")
+// const todoStore = transaction.objectStore("sync-todos")
+// const addRequest = todoStore.add({text: txt_val})
+// addRequest.addEventListener("success", () => {
+//     console.log("Added " + "#" + addRequest.result + ": " + txt_val)
+//     const getRequest = todoStore.get(addRequest.result)
+//     getRequest.addEventListener("success", () => {
+//         console.log("Found " + JSON.stringify(getRequest.result))
+//         // Send a sync message to the service worker
+//         navigator.serviceWorker.ready.then((sw) => {
+//             sw.sync.register("sync-todo")
+//         }).then(() => {
+//             console.log("Sync registered");
+//         }).catch((err) => {
+//             console.log("Sync registration failed: " + JSON.stringify(err))
+//         })
+//     })
+// })
+// }
+// }
 
 // Gets all plants from indexDB
 const getAllSyncPlants = (syncDataIDB) => {

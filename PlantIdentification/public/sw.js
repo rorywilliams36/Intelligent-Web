@@ -1,28 +1,33 @@
 importScripts('/static/idb_util.js');
 
-
 // Install event
-self.addEventListener('install', (event) => {
-    event.waitUntil(async() => {
+self.addEventListener('install', event => {
+    console.log('Service Worker: Installing....');
+    event.waitUntil((async () => {
+
+        console.log('Service Worker: Caching App Shell at the moment......');
         try {
-            caches.open('my-cache').then((cache) => {
-                return cache.addAll([
-                    '/',
-                    '/images/favicon.ico',
-                    '/all_plants', // Cache /all_plants page
-                    '/login', // Cache /login page
-                    '/create_plant', // Cache /create_plant page
-                    '/submit-plant',
-                    '/static/index.js',
-                    '/static/idb_util.js'
-                ]);
-            })
+            const cache = await caches.open("static");
+            cache.addAll([
+                '/',
+                '/images/favicon.ico',
+                '/all_plants', // Cache /all_plants page
+                '/login', // Cache /login page
+                '/create_plant', // Cache /create_plant page
+                '/submit-plant',
+                '/static/index.js',
+                '/static/idb_util.js',
+                '/views/index.ejs',
+                '/views/plant.ejs',
+                '/plant/:id'
+            ]);
+            console.log('Service Worker: App Shell Cached');
         }
-        catch {
-            console.log('Error occured loading cache')
+        catch{
+            console.log("error occured while caching...")
         }
-        }
-    );
+
+    })());
 });
 
 // Fetch event

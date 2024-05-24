@@ -40,7 +40,6 @@ window.onload= function() {
     // When Online
     if (navigator.onLine) {
         console.log('ONLINE');
-
         // First update indexddb plant store from mongoDB
         fetch('http:////localhost:3000/every_plant')
             .then(function (res) {
