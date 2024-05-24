@@ -108,7 +108,7 @@ function addMessageToHistory(name, message) {
 function hideLoginInterface(room, userId) {
     document.getElementById('initial_form').style.display = 'none';
     document.getElementById('chat_interface').style.display = 'block';
-    document.getElementById('in_room').innerHTML= ' '+room;
+    // document.getElementById('in_room').innerHTML= room;
 }
 
 function tryNewIdentification(plantid) {
