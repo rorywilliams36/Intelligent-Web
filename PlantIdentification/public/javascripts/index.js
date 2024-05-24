@@ -34,7 +34,10 @@ function init() {
     socket.on('refresh', function () {
         location.reload();
     });
-    connectToRoom('<%= data._id %>')
+    
+    roomidnum = document.getElementById('plantID').innerHTML
+    console.log('room id num', roomidnum)
+    connectToRoom(roomidnum)
 }
 
 /**
@@ -63,9 +66,10 @@ function sendChatText() {
  * interface
  */
 function connectToRoom(roomnumber) {
-    console.log('Running connectToRoom  ')
+    console.log('Running connectToRoom', roomnumber)
     roomNo = roomnumber;
-    username = document.getElementById('username').textContent
+    username = document.getElementById('current_user').textContent
+    if (username === 'Sign In' || username === 'Unknown') username = 'Anonymous-' +Math.round(Math.random() * 10000);
     if (!username) username = 'Anonymous-' +Math.round(Math.random() * 10000);
     socket.emit('create or join', roomNo, username);
     console.log('Connected to room (I think): ' + roomNo + ' as ' + username);

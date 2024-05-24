@@ -10,10 +10,9 @@
     <body onload="init()">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <div class="row">
-            
             <br>
-            <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-12 mx-auto">
-                <%
+            <div class="card col-xl-4 col-lg-4 col-md-6 col-sm-12 mx-auto">
+                <%  
                     // Displays image from database
                     // If no image is found uses the defaultviews
                     plant_img = "https://as1.ftcdn.net/v2/jpg/01/86/28/18/1000_F_186281897_gzKwaUCOi4fbK5API8a4MafLvML5ElOl.jpg";
@@ -22,6 +21,7 @@
                     long = loc_array[0].trim();
                     lat = loc_array[1].trim(); 
                     %>
+                    <p style="display: none;" id="plantID"><%= data._id %></p>
                     <img class="rounded img-fluid d-block w-100 fit-cover mt-2" style="height: 600px;" src= "<%= plant_img %>" alt="Plant">
                     <div class="card-body">
                     <h4 class="text-bg-primary py-2 px-3 rounded"><strong><%= data.Plant_Name%></strong></h4>
@@ -92,18 +92,20 @@
                                     <% }); %>
                                 <% } else { %>
                                     <h4 class="card-title">Identification - Unknown</h4>
-                                    <p>Current identification "<%= data.Identification_Name %>" does not work, please provide a new one.</p>
+                                    <p>Current identification "<%= data.Identification_Name %>" does not work.</p>
                 
                                 <% } %>
-                                <form onsubmit="return false;" style="width: 100%">
-                                    <p>
-                                        <label for="name">Plant Name: </label>
-                                        <input type="text" id="identify_input" name="identify_input" style="width: 60%">
-                                        <button id="identify_send" onclick="tryNewIdentification('<%= data._id %>')">Identify</button>
-                                    </p>
-                                </form>
+                                <div id="change_identification_form" style="">
+                                    <form onsubmit="return false;" style="width: 100%">
+                                        <div class="row">
+                                            <label class="text-center" for="name"><strong>Update Identification Name:</strong></label>
+                                            <input type="text" class="w-100 mb-1 rounded border border-primary" id="identify_input" name="identify_input">
+                                            <button class="btn btn-primary" id="identify_send" onclick="tryNewIdentification('<%= data._id %>')">Identify</button>
+                                        </div>
+                                    </form>
+                                
                             </div>
-                            
+                        </div>
                         </div>
                         <div class="row mb-3">
                             <h3>Comments</h3>
