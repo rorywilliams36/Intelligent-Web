@@ -1,10 +1,11 @@
-const addNewPlant = () => {
-    console.log('HHHHHHHHHHHHHHHH')
-    console.log(document.forms[formName])
+const addNewPlant = (event,form) => {
 
-    var formData = new FormData(formEl);
+    var formData = new FormData(form);
+    let plant = {}
+    for (let [key, value] of formData.entries()) {
+        plant[key] = value
+    }
 
-    var name = formData.get('name');
     openSyncIDB().then((db) => {
         addSyncPlants(db, plant);
     });
@@ -20,11 +21,10 @@ const addNewPlant = () => {
 
 
 window.onload = function () {
-    // Add event listeners to buttons
-    window.addEventListener("DOMContentLoaded", (event) => {
-        const el = document.getElementById('create-plant');
-        if (el) {
-            el.addEventListener('click', addNewPlant);
-        }
-    });
+    console.log('LOAD')
+    const form = document.getElementById('PlantCreation');
+    if (form) {
+        console.log('LOADED')
+        form.addEventListener('click', () => {addNewPlant(event, form)})
+    }
 }

@@ -18,8 +18,7 @@ self.addEventListener('install', event => {
                 '/static/index.js',
                 '/static/idb_util.js',
                 '/views/index.ejs',
-                '/views/plant.ejs',
-                '/plant/:id'
+                '/views/plant.ejs'
             ]);
             console.log('Service Worker: App Shell Cached');
         }
@@ -81,7 +80,7 @@ self.addEventListener('sync', event => {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                     }).then(() => {
-                        console.log('Service Worker: Syncing new Todo: ', syncPlant, ' done');
+                        console.log('Service Worker: Syncing new Plant: ', syncPlant, ' done');
                         deleteSyncPlantFromIDB(syncDataDB,syncPlant.id);
                         // Send a notification
                         self.registration.showNotification('Plant Synced', {
