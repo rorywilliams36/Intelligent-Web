@@ -24,7 +24,6 @@ window.onload = function () {
     console.log('LOAD')
     const form = document.getElementById('PlantCreation');
     if (form) {
-        console.log('LOADED')
-        form.addEventListener('click', () => {addNewPlant(event, form)})
+        form.addEventListener('submit', () => {addNewPlant(event, form)})
     }
 }
