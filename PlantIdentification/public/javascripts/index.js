@@ -34,7 +34,7 @@ function init() {
     socket.on('refresh', function () {
         location.reload();
     });
-
+    connectToRoom('<%= data._id %>')
 }
 
 /**
@@ -65,7 +65,7 @@ function sendChatText() {
 function connectToRoom(roomnumber) {
     console.log('Running connectToRoom  ')
     roomNo = roomnumber;
-    username = document.getElementById('name').value;
+    username = document.getElementById('username').textContent
     if (!username) username = 'Anonymous-' +Math.round(Math.random() * 10000);
     socket.emit('create or join', roomNo, username);
     console.log('Connected to room (I think): ' + roomNo + ' as ' + username);
