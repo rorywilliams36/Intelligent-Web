@@ -37,6 +37,18 @@ const seedData = [
         Date: "2023-06-11T00:00:00.000Z",
         Plant: "60f3b3b3b3b3b3b3b3b3b3b1",
         Comment: "These look amazing!",
+    },
+    {
+        Username: "PetterJ210",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b0",
+        Comment: "Very colourful!",
+    },
+    {
+        Username: "JeffB24",
+        Date: "2023-06-11T00:00:00.000Z",
+        Plant: "60f3b3b3b3b3b3b3b3b3b3b0",
+        Comment: "You found it in Sheffield!?",
     }
 ]
 
