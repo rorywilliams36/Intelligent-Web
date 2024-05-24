@@ -10,6 +10,8 @@ It is recommended you run the code in this order:
 2. Run `npm install` to install all required packages
 3. Run `npm start` to run the program (defaults to `locahost:3000`)
 
+Once up and running the app can also be ran as a PWA on mobile and laptop devices, it has its own custom splashscreen & icons.
+
 ## Important Pages
 
 - Use `/login` to sign in, allowing you to comment/submit plants
@@ -21,6 +23,10 @@ It is recommended you run the code in this order:
 
 Screenshots of the project in action are available in the `screenshots` folder.
 
-## Repository Link
+## Evidence of Contributions
 
-[www.github.com](https://github.com/rorywilliams36/Intelligent-Web)
+We cannot access our individual github contributions as it requires a pro membership, however here is our respoitory (access can be requested) and our kanban board (which should give much more detail than the github). Contributions are roughly 50/50.
+
+[Our Repository](https://github.com/rorywilliams36/Intelligent-Web)
+
+[Kanban Board](https://trello.com/b/uFFaMrJX/kanban)
