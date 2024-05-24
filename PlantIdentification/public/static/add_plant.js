@@ -19,7 +19,6 @@ const addNewPlant = (event,form) => {
         });
 }
 
-
 window.onload = function () {
     console.log('LOAD')
     const form = document.getElementById('PlantCreation');
